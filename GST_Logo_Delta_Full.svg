@@ -1,0 +1,20 @@
+<svg width="420" height="60" viewBox="0 0 420 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Delta Symbol GST Logo - Full Lockup with Company Name -->
+  
+  <!-- Delta Symbol -->
+  <g id="delta">
+    <path d="M30 10 L45 45 L15 45 Z" fill="none" stroke="#1a1a1a" stroke-width="3" stroke-linejoin="miter"/>
+  </g>
+  
+  <!-- GST Text -->
+  <g id="gst-text" fill="#1a1a1a">
+    <text x="60" y="40" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif" 
+          font-size="32" font-weight="600" letter-spacing="-0.02em">GST</text>
+  </g>
+  
+  <!-- Company Name -->
+  <g id="company-name" fill="#555555">
+    <text x="150" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif" 
+          font-size="16" font-weight="400" letter-spacing="0">Global Strategic Tech</text>
+  </g>
+</svg>

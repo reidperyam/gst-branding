@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GST Brand Board - Current Site Colors & Delta Identity</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .brand-header {
+            text-align: center;
+            margin-bottom: 80px;
+            padding-bottom: 40px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .brand-header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+        
+        .brand-header .delta {
+            font-size: 64px;
+            color: #1a1a1a;
+            display: block;
+            margin-bottom: 24px;
+        }
+        
+        .brand-header p {
+            font-size: 18px;
+            color: #666666;
+        }
+        
+        /* Section */
+        .section {
+            margin-bottom: 80px;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            color: #1a1a1a;
+            position: relative;
+            padding-left: 48px;
+        }
+        
+        .section-title::before {
+            content: 'Δ';
+            position: absolute;
+            left: 0;
+            color: #1a1a1a;
+            font-size: 36px;
+        }
+        
+        /* Logo Showcase */
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .logo-card {
+            padding: 60px 40px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #e0e0e0;
+            transition: all 300ms ease;
+        }
+        
+        .logo-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+        
+        .logo-card.dark {
+            background: #1a1a1a;
+        }
+        
+        .logo-card.light {
+            background: #ffffff;
+        }
+        
+        .logo-display {
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: -0.01em;
+        }
+        
+        .logo-card.light .logo-display {
+            color: #1a1a1a;
+        }
+        
+        .logo-card.dark .logo-display {
+            color: #ffffff;
+        }
+        
+        .logo-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #666666;
+        }
+        
+        .logo-card.dark .logo-label {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Color Swatches - ACTUAL COLORS, NO CODES */
+        .color-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .color-swatch {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: 300;
+            transition: all 300ms ease;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .color-swatch:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+        }
+        
+        .color-label {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        .color-context {
+            text-align: center;
+            margin-top: 4px;
+            font-size: 12px;
+            color: #666666;
+        }
+        
+        /* Primary Colors from Current Site */
+        .color-dark-primary {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+        
+        .color-light-primary {
+            background: #ffffff;
+            color: #1a1a1a;
+        }
+        
+        .color-gray-light {
+            background: #f5f5f5;
+            color: #666666;
+        }
+        
+        .color-gray-medium {
+            background: #999999;
+            color: #ffffff;
+        }
+        
+        .color-gray-dark {
+            background: #4a4a4a;
+            color: #ffffff;
+        }
+        
+        .color-accent-blue {
+            background: #2563eb;
+            color: #ffffff;
+        }
+        
+        /* Typography Scale */
+        .type-sample {
+            margin-bottom: 48px;
+            padding: 32px;
+            background: #fafafa;
+            border-left: 4px solid #1a1a1a;
+        }
+        
+        .type-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #666666;
+            margin-bottom: 16px;
+        }
+        
+        .type-display {
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: #1a1a1a;
+        }
+        
+        .type-h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: #1a1a1a;
+        }
+        
+        .type-h2 {
+            font-size: 36px;
+            font-weight: 600;
+            line-height: 1.3;
+            color: #1a1a1a;
+        }
+        
+        .type-body {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333333;
+        }
+        
+        /* Delta Usage Examples */
+        .delta-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+        
+        .delta-card {
+            padding: 32px;
+            background: #ffffff;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .delta-large {
+            font-size: 72px;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+        
+        .delta-context {
+            font-size: 14px;
+            color: #666666;
+            font-weight: 500;
+        }
+        
+        /* Component Showcase */
+        .component-grid {
+            display: grid;
+            gap: 32px;
+        }
+        
+        .component-card {
+            padding: 40px;
+            background: #ffffff;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        
+        .component-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #1a1a1a;
+        }
+        
+        .btn-demo {
+            display: inline-block;
+            padding: 14px 32px;
+            background: #1a1a1a;
+            color: #ffffff;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-right: 16px;
+            margin-bottom: 16px;
+            transition: all 200ms ease;
+            border: 2px solid transparent;
+        }
+        
+        .btn-demo:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-demo.secondary {
+            background: transparent;
+            color: #1a1a1a;
+            border: 2px solid #1a1a1a;
+        }
+        
+        .btn-demo.secondary:hover {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+        
+        /* Metric Display */
+        .metric-display {
+            font-family: "SF Mono", Consolas, monospace;
+            font-size: 48px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        
+        .metric-display::before {
+            content: 'Δ ';
+            color: #2563eb;
+        }
+        
+        .metric-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #666666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="brand-header">
+            <div class="delta">Δ</div>
+            <h1>Global Strategic Tech</h1>
+            <p>Brand Identity System - Based on Current Site Design</p>
+        </div>
+        
+        <!-- Logo Variations with Delta -->
+        <div class="section">
+            <h2 class="section-title">Logo Variations</h2>
+            
+            <div class="logo-grid">
+                <div class="logo-card light">
+                    <div class="logo-display">Δ GST</div>
+                    <div class="logo-label">Primary Logo (Light Background)</div>
+                </div>
+                
+                <div class="logo-card dark">
+                    <div class="logo-display">Δ GST</div>
+                    <div class="logo-label">Primary Logo (Dark Background)</div>
+                </div>
+                
+                <div class="logo-card light">
+                    <div class="logo-display" style="font-size: 72px;">Δ</div>
+                    <div class="logo-label">Icon Only (Favicon, Social)</div>
+                </div>
+                
+                <div class="logo-card light">
+                    <div class="logo-display" style="font-size: 28px; font-weight: 400;">Δ Global Strategic Tech</div>
+                    <div class="logo-label">Full Lockup (Formal Use)</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Color Palette - Actual Colors -->
+        <div class="section">
+            <h2 class="section-title">Color Palette</h2>
+            <p style="margin-bottom: 32px; color: #666; font-size: 16px;">These are the actual colors from your current website design</p>
+            
+            <div class="color-showcase">
+                <div>
+                    <div class="color-swatch color-dark-primary">█</div>
+                    <div class="color-label">Deep Charcoal</div>
+                    <div class="color-context">Primary text, headers, nav</div>
+                </div>
+                
+                <div>
+                    <div class="color-swatch color-light-primary">█</div>
+                    <div class="color-label">Clean White</div>
+                    <div class="color-context">Backgrounds, cards</div>
+                </div>
+                
+                <div>
+                    <div class="color-swatch color-gray-light">█</div>
+                    <div class="color-label">Soft Gray</div>
+                    <div class="color-context">Section backgrounds</div>
+                </div>
+                
+                <div>
+                    <div class="color-swatch color-gray-medium">█</div>
+                    <div class="color-label">Medium Gray</div>
+                    <div class="color-context">Secondary text, borders</div>
+                </div>
+                
+                <div>
+                    <div class="color-swatch color-gray-dark">█</div>
+                    <div class="color-label">Slate Gray</div>
+                    <div class="color-context">Body text, UI elements</div>
+                </div>
+                
+                <div>
+                    <div class="color-swatch color-accent-blue">█</div>
+                    <div class="color-label">Professional Blue</div>
+                    <div class="color-context">Links, CTAs, accents</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Typography -->
+        <div class="section">
+            <h2 class="section-title">Typography Scale</h2>
+            
+            <div class="type-sample">
+                <div class="type-label">Display / Hero Headlines</div>
+                <div class="type-display">Strategic Advisory & Implementation</div>
+            </div>
+            
+            <div class="type-sample">
+                <div class="type-label">Heading 1 / Page Titles</div>
+                <div class="type-h1">Technical Diligence Delivered</div>
+            </div>
+            
+            <div class="type-sample">
+                <div class="type-label">Heading 2 / Section Headers</div>
+                <div class="type-h2">Value Creation Execution</div>
+            </div>
+            
+            <div class="type-sample">
+                <div class="type-label">Body Text / Paragraphs</div>
+                <div class="type-body">
+                    We deliver technical diligence, integration planning, and value creation execution 
+                    for high-stakes transactions. Our expertise bridges technical depth and business 
+                    strategy at the executive level, creating measurable transformation for PE-backed companies.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Delta Symbol Usage -->
+        <div class="section">
+            <h2 class="section-title">Delta Symbol (Δ) Usage</h2>
+            <p style="margin-bottom: 32px; color: #666; font-size: 16px;">The Delta represents transformation, change, and measurable impact</p>
+            
+            <div class="delta-examples">
+                <div class="delta-card">
+                    <div class="delta-large">Δ</div>
+                    <div class="delta-context">Logo Mark</div>
+                </div>
+                
+                <div class="delta-card">
+                    <div class="metric-display">$8.2M</div>
+                    <div class="metric-label">EBITDA Impact</div>
+                </div>
+                
+                <div class="delta-card">
+                    <div style="font-size: 24px; margin-bottom: 16px;">
+                        <div style="color: #1a1a1a; font-weight: 600;">Δ Platform Modernization</div>
+                        <div style="color: #1a1a1a; font-weight: 600; margin-top: 8px;">Δ Integration Execution</div>
+                        <div style="color: #1a1a1a; font-weight: 600; margin-top: 8px;">Δ Value Creation</div>
+                    </div>
+                    <div class="delta-context">List Markers</div>
+                </div>
+                
+                <div class="delta-card">
+                    <div style="font-size: 64px; margin-bottom: 16px; color: #1a1a1a;">Δ</div>
+                    <div style="font-size: 18px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px;">PORTFOLIO</div>
+                    <div class="delta-context">Section Divider</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Component Examples -->
+        <div class="section">
+            <h2 class="section-title">Component Patterns</h2>
+            
+            <div class="component-grid">
+                <div class="component-card">
+                    <h3>Buttons</h3>
+                    <a href="#" class="btn-demo">Schedule Consultation</a>
+                    <a href="#" class="btn-demo secondary">View Portfolio</a>
+                </div>
+                
+                <div class="component-card">
+                    <h3>Metric Display with Delta</h3>
+                    <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+                        <div>
+                            <div class="metric-display">$12M</div>
+                            <div class="metric-label">Revenue Impact</div>
+                        </div>
+                        <div>
+                            <div class="metric-display">42%</div>
+                            <div class="metric-label">Efficiency Gain</div>
+                        </div>
+                        <div>
+                            <div class="metric-display">6mo</div>
+                            <div class="metric-label">Time to Value</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="component-card" style="background: #1a1a1a; color: #ffffff; border-color: #1a1a1a;">
+                    <h3 style="color: #ffffff;">Footer with Delta Signature</h3>
+                    <div style="text-align: center; padding: 20px 0;">
+                        <div style="font-size: 48px; margin-bottom: 16px;">Δ</div>
+                        <div style="font-size: 14px; opacity: 0.7;">© 2026 Global Strategic Technologies</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Design Principles -->
+        <div class="section">
+            <h2 class="section-title">Design Principles</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                <div style="padding: 32px; background: #fafafa; border-radius: 8px;">
+                    <h3 style="font-size: 20px; margin-bottom: 12px; color: #1a1a1a;">Minimalist Sophistication</h3>
+                    <p style="color: #666666; font-size: 15px;">Clean layouts, generous whitespace, typography-driven design</p>
+                </div>
+                
+                <div style="padding: 32px; background: #fafafa; border-radius: 8px;">
+                    <h3 style="font-size: 20px; margin-bottom: 12px; color: #1a1a1a;">Executive Professionalism</h3>
+                    <p style="color: #666666; font-size: 15px;">Serious, credible aesthetic with confidence through restraint</p>
+                </div>
+                
+                <div style="padding: 32px; background: #fafafa; border-radius: 8px;">
+                    <h3 style="font-size: 20px; margin-bottom: 12px; color: #1a1a1a;">Technical Precision</h3>
+                    <p style="color: #666666; font-size: 15px;">Sharp edges, aligned grids, consistent rhythm and structure</p>
+                </div>
+                
+                <div style="padding: 32px; background: #fafafa; border-radius: 8px;">
+                    <h3 style="font-size: 20px; margin-bottom: 12px; color: #1a1a1a;">Transformation Focus</h3>
+                    <p style="color: #666666; font-size: 15px;">Delta (Δ) symbol represents measurable change and value creation</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div style="text-align: center; padding: 60px 0 40px; margin-top: 80px; border-top: 2px solid #e0e0e0;">
+            <div style="font-size: 72px; margin-bottom: 24px;">Δ</div>
+            <p style="color: #666666; font-size: 14px;">
+                Global Strategic Tech Brand System v2.0<br>
+                Based on Current Website Design | January 2026
+            </p>
+        </div>
+    </div>
+</body>
+</html>
