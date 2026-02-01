@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GST Logo System - Complete Refinement Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            padding: 40px;
+        }
+        
+        .header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #2C3E50;
+        }
+        
+        .tagline {
+            color: #7f8c8d;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .current-issue {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 4px;
+        }
+        
+        .current-issue h3 {
+            color: #856404;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .current-issue ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .current-issue li {
+            color: #856404;
+            margin: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .current-issue li:before {
+            content: "❌";
+            position: absolute;
+            left: 0;
+        }
+        
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #2C3E50;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        select, input[type="color"], input[type="range"], input[type="number"] {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 13px;
+            background: white;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2C3E50;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .preview-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .preview-header {
+            padding: 12px 16px;
+            background: #2C3E50;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .usage-tag {
+            background: rgba(255,255,255,0.2);
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 10px;
+        }
+        
+        .preview-body {
+            padding: 40px;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .preview-body.dark {
+            background: #1a1a1a;
+        }
+        
+        .preview-body.light {
+            background: #ffffff;
+        }
+        
+        .preview-body.pattern {
+            background: 
+                repeating-linear-gradient(45deg, #f0f0f0, #f0f0f0 10px, #fafafa 10px, #fafafa 20px);
+        }
+        
+        .logo-horizontal {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .logo-stacked {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            text-align: center;
+        }
+        
+        .logo-icon {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .gst-letter {
+            font-weight: 700;
+            font-size: 48px;
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+        
+        .full-name {
+            font-weight: 500;
+            font-size: 28px;
+            line-height: 1;
+            letter-spacing: 2px;
+        }
+        
+        .medium-name {
+            font-weight: 500;
+            font-size: 32px;
+            line-height: 1;
+            letter-spacing: 2px;
+        }
+        
+        .download-section {
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+        }
+        
+        .download-section h2 {
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        
+        .download-section p {
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        .download-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+        
+        .specs {
+            margin-top: 30px;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+        }
+        
+        .specs h3 {
+            margin-bottom: 15px;
+            color: #2C3E50;
+            font-size: 18px;
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .spec-item {
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .spec-label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.8;
+        }
+        
+        .spec-value {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        
+        .comparison {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+        
+        .comparison h3 {
+            color: #1565c0;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .comparison-item h4 {
+            font-size: 13px;
+            margin-bottom: 8px;
+            color: #1565c0;
+        }
+        
+        .comparison-item ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .comparison-item li {
+            padding: 4px 0;
+            font-size: 13px;
+            color: #0d47a1;
+        }
+        
+        .size-reference {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 10px;
+            color: #999;
+            background: rgba(255,255,255,0.8);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Global Strategic Technologies - Logo Refinement System</h1>
+            <p class="tagline">Interactive tool implementing the complete brand naming strategy</p>
+            
+            <div class="current-issue">
+                <h3>⚠️ ISSUES WITH YOUR CURRENT LOGO CONCEPTS:</h3>
+                <ul>
+                    <li>Uses SQUARE (■) instead of required DELTA (Δ) symbol</li>
+                    <li>Only shows "GST" - missing full name "Global Strategic Technologies"</li>
+                    <li>Missing "GS Tech" medium-length variation</li>
+                    <li>Too bold/casual for PE executive audience (needs refinement)</li>
+                    <li>No transparent background versions</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label>Font Family</label>
+                <select id="fontFamily">
+                    <option value="'Montserrat', sans-serif">Montserrat ⭐</option>
+                    <option value="'Inter', sans-serif">Inter</option>
+                    <option value="'Helvetica Neue', sans-serif">Helvetica Neue</option>
+                    <option value="'Futura', sans-serif">Futura</option>
+                    <option value="system-ui, sans-serif">System UI</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label>Font Weight</label>
+                <select id="fontWeight">
+                    <option value="300">Light (300)</option>
+                    <option value="400">Regular (400)</option>
+                    <option value="500" selected>Medium (500) ⭐</option>
+                    <option value="600">Semi-Bold (600)</option>
+                    <option value="700">Bold (700)</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label>Primary Color</label>
+                <input type="color" id="primaryColor" value="#00D9B5">
+            </div>
+            
+            <div class="control-group">
+                <label>Letter Spacing (px)</label>
+                <input type="number" id="letterSpacing" min="0" max="10" value="2" step="0.5">
+            </div>
+            
+            <div class="control-group">
+                <label>Delta Size (%)</label>
+                <input type="range" id="deltaSize" min="80" max="120" value="100" step="5">
+                <span id="deltaSizeValue">100%</span>
+            </div>
+        </div>
+        
+        <div class="comparison">
+            <h3>📊 Comparison: Current vs. Refined Approach</h3>
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <h4>❌ Your Current Design Issues:</h4>
+                    <ul>
+                        <li>• Square (■) not Delta (Δ)</li>
+                        <li>• Only "GST" abbreviation</li>
+                        <li>• Too bold/heavy weight</li>
+                        <li>• Limited versatility</li>
+                        <li>• Missing full name variations</li>
+                    </ul>
+                </div>
+                <div class="comparison-item">
+                    <h4>✅ Refined System Benefits:</h4>
+                    <ul>
+                        <li>• Delta (Δ) = measurable transformation</li>
+                        <li>• Full name + GST + GS Tech</li>
+                        <li>• Executive sophistication</li>
+                        <li>• Complete flexibility system</li>
+                        <li>• All required variations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Full Name Variations</h2>
+        <div class="preview-grid">
+            <!-- Full Name Horizontal - Light -->
+            <div class="preview-card">
+                <div class="preview-header">
+                    <span>Full Name - Light Background</span>
+                    <span class="usage-tag">Website, Cards, Formal</span>
+                </div>
+                <div class="preview-body light">
+                    <div class="logo-horizontal">
+                        <svg class="delta-svg" width="36" height="36" viewBox="0 0 36 36">
+                            <path d="M 18 4 L 32 32 L 4 32 Z" fill="#00D9B5"/>
+                        </svg>
+                        <span class="full-name" style="color: #2C3E50;">GLOBAL STRATEGIC TECHNOLOGIES</span>
+                    </div>
+                    <div class="size-reference">~600px wide</div>
+                </div>
+            </div>
+            
+            <!-- Full Name Horizontal - Dark -->
+            <div class="preview-card">
+                <div class="preview-header">
+                    <span>Full Name - Dark Background</span>
+                    <span class="usage-tag">Dark Theme, Presentations</span>
+                </div>
+                <div class="preview-body dark">
+                    <div class="logo-horizontal">
+                        <svg class="delta-svg" width="36" height="36" viewBox="0 0 36 36">
+                            <path d="M 18 4 L 32 32 L 4 32 Z" fill="#00D9B5"/>
+                        </svg>
+                        <span class="full-name" style="color: #ffffff;">GLOBAL STRATEGIC TECHNOLOGIES</span>
+                    </div>
+                    <div class="size-reference">~600px wide</div>
+                </div>
+            </div>
+            
+            <!-- Full Name Stacked -->
+            <div class="preview-card">
+                <div class="preview-header">
+                    <span>Full Name - Stacked</span>
+                    <span class="usage-tag">Square Formats, Social</span>
+                </div>
+                <div class="preview-body pattern">
+                    <div class="logo-stacked">
+                        <svg class="delta-svg" width="54" height="54" viewBox="0 0 54 54">
+                            <path d="M 27 6 L 48 48 L 6 48 Z" fill="#00D9B5"/>
+                        </svg>
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <span class="full-name" style="color: #2C3E50; font-size: 20px;">GLOBAL STRATEGIC</span>
+                            <span class="full-name" style="color: #2C3E50; font-size: 20px;">TECHNOLOGIES</span>
+                        </div>
+                    </div>
+                    <div class="size-reference">300×300</div>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Medium-Length: "GS Tech" (Recommended for most uses)</h2>
+        <div class="preview-grid">
+            <!-- GS Tech Horizontal - Light -->
+            <div class="preview-card">
+                <div class="preview-header">
+                    <span>GS Tech - Light Background</span>
+                    <span class="usage-tag">Tablet, Email, Compact</span>
+                </div>
+                <div class="preview-body light">
+                    <div class="logo-horizontal">
+                        <svg class="delta-svg" width="40" height="40" viewBox="0 0 40 40">
+                            <path d="M 20 5 L 35 35 L 5 35 Z" fill="#00D9B5"/>
+                        </svg>
+                        <span class="medium-name" style="color: #2C3E50;">GS TECH</span>
+                    </div>
+                    <div class="size-reference">~280px wide</div>
+                </div>
+            </div>
+            
+            <!-- GS Tech Horizontal - Dark -->
+            <div class="preview-card">
+                <div class="preview-header">
+                    <span>GS Tech - Dark Background</span>
+                    <span class="usage-tag">Dark Mode, Headers</span>
+                </div>
+                <div class="preview-body dark">
+                    <div class="logo-horizontal">
+                        <svg class="delta-svg" width="40" height="40" viewBox="0 0 40 40">
+                            <path d="M 20 5 L 35 35 L 5 35 Z" fill="#00D9B5"/>
+                        </svg>
+                        <span class="medium-name" style="color: #ffffff;">GS TECH</span>
+                    </div>
+                    <div class="size-reference">~280px wide</div>
+                </div>
+            </div>
+            
+            <!-- GS Tech Stacked -->
+            <div class="preview-card">
+                <div class="preview-header">
+                    <span>GS Tech - Stacked</span>
+                    <span class="usage-tag">Social Media, Compact Square</span>
+                </div>
+                <div class="preview-body pattern">
+                    <div class="logo-stacked">
+                        <svg class="delta-svg" width="60" height="60" viewBox="0 0 60 60">
+                            <path d="M 30 8 L 52 52 L 8 52 Z" fill="#00D9B5"/>
+                        </svg>
+                        <span class="medium-name" style="color: #2C3E50; font-size: 28px;">GS TECH</span>
+                    </div>
+                    <div class="size-reference">250×250</div>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Short Form: "GST" (Mobile, Icons, Compact)</h2>
+        <div class="preview-grid">
+            <!-- GST Horizontal - Refined Version -->
+            <div class="preview-card">
+                <div class="preview-header">
+                    <span>GST - Refined (Light)</span>
+                    <span class="usage-tag">Mobile Header, Compact</span>
+                </div>
+                <div class="preview-body light">
+                    <div class="logo-icon">
+                        <span class="gst-letter" style="color: #2C3E50;">G</span>
+                        <span class="gst-letter" style="color: #00D9B5;">S</span>
+                        <span class="gst-letter" style="color: #2C3E50;">T</span>
+                        <svg class="delta-svg" width="42" height="42" viewBox="0 0 42 42">
+                            <path d="M 21 6 L 36 36 L 6 36 Z" fill="#00D9B5"/>
+                        </svg>
+                    </div>
+                    <div class="size-reference">~220px wide</div>
+                </div>
+            </div>
+            
+            <!-- GST Icon Only -->
+            <div class="preview-card">
+                <div class="preview-header">
+                    <span>GST - Icon Version</span>
+                    <span class="usage-tag">Favicon, App Icon</span>
+                </div>
+                <div class="preview-body pattern">
+                    <div class="logo-stacked">
+                        <svg class="delta-svg" width="72" height="72" viewBox="0 0 72 72">
+                            <path d="M 36 10 L 62 62 L 10 62 Z" fill="#00D9B5"/>
+                        </svg>
+                        <div class="logo-icon" style="margin-top: 8px;">
+                            <span class="gst-letter" style="color: #2C3E50; font-size: 36px;">G</span>
+                            <span class="gst-letter" style="color: #00D9B5; font-size: 36px;">S</span>
+                            <span class="gst-letter" style="color: #2C3E50; font-size: 36px;">T</span>
+                        </div>
+                    </div>
+                    <div class="size-reference">180×180</div>
+                </div>
+            </div>
+            
+            <!-- GST Compact Horizontal -->
+            <div class="preview-card">
+                <div class="preview-header">
+                    <span>GST Δ - Ultra Compact</span>
+                    <span class="usage-tag">Smallest Spaces</span>
+                </div>
+                <div class="preview-body light">
+                    <div class="logo-horizontal">
+                        <div class="logo-icon">
+                            <span class="gst-letter" style="color: #2C3E50; font-size: 40px;">G</span>
+                            <span class="gst-letter" style="color: #00D9B5; font-size: 40px;">S</span>
+                            <span class="gst-letter" style="color: #2C3E50; font-size: 40px;">T</span>
+                        </div>
+                        <svg class="delta-svg" width="36" height="36" viewBox="0 0 36 36">
+                            <path d="M 18 4 L 32 32 L 4 32 Z" fill="#00D9B5"/>
+                        </svg>
+                    </div>
+                    <div class="size-reference">~180px wide</div>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Monochrome Versions (All Contexts)</h2>
+        <div class="preview-grid">
+            <!-- Full Name Black -->
+            <div class="preview-card">
+                <div class="preview-header">
+                    <span>Full Name - All Black</span>
+                    <span class="usage-tag">Print, B&W Docs</span>
+                </div>
+                <div class="preview-body light">
+                    <div class="logo-horizontal">
+                        <svg class="delta-svg" width="36" height="36" viewBox="0 0 36 36">
+                            <path d="M 18 4 L 32 32 L 4 32 Z" fill="#000000"/>
+                        </svg>
+                        <span class="full-name" style="color: #000000;">GLOBAL STRATEGIC TECHNOLOGIES</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- GS Tech White -->
+            <div class="preview-card">
+                <div class="preview-header">
+                    <span>GS Tech - All White</span>
+                    <span class="usage-tag">Dark Backgrounds</span>
+                </div>
+                <div class="preview-body dark">
+                    <div class="logo-horizontal">
+                        <svg class="delta-svg" width="40" height="40" viewBox="0 0 40 40">
+                            <path d="M 20 5 L 35 35 L 5 35 Z" fill="#ffffff"/>
+                        </svg>
+                        <span class="medium-name" style="color: #ffffff;">GS TECH</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- GST Black Icon -->
+            <div class="preview-card">
+                <div class="preview-header">
+                    <span>GST Icon - All Black</span>
+                    <span class="usage-tag">Monochrome Contexts</span>
+                </div>
+                <div class="preview-body light">
+                    <div class="logo-icon">
+                        <span class="gst-letter" style="color: #000000;">G</span>
+                        <span class="gst-letter" style="color: #000000;">S</span>
+                        <span class="gst-letter" style="color: #000000;">T</span>
+                        <svg class="delta-svg" width="42" height="42" viewBox="0 0 42 42">
+                            <path d="M 21 6 L 36 36 L 6 36 Z" fill="#000000"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="download-section">
+            <h2>📥 Export Your Refined Logo System</h2>
+            <p>Download SVG files with transparent backgrounds for all variations</p>
+            
+            <div class="download-buttons">
+                <button class="btn btn-primary" onclick="downloadSVG('full-horizontal')">
+                    ↓ Full Name Horizontal
+                </button>
+                <button class="btn btn-primary" onclick="downloadSVG('gstech-horizontal')">
+                    ↓ GS Tech Horizontal
+                </button>
+                <button class="btn btn-primary" onclick="downloadSVG('gst-horizontal')">
+                    ↓ GST Horizontal
+                </button>
+                <button class="btn btn-primary" onclick="downloadSVG('full-stacked')">
+                    ↓ Full Stacked
+                </button>
+                <button class="btn btn-primary" onclick="downloadSVG('gstech-stacked')">
+                    ↓ GS Tech Stacked
+                </button>
+                <button class="btn btn-primary" onclick="downloadSVG('gst-icon')">
+                    ↓ GST Icon
+                </button>
+                <button class="btn btn-primary" onclick="downloadAllSVGs()">
+                    ↓ Download All SVGs (ZIP)
+                </button>
+            </div>
+            
+            <div class="specs">
+                <h3>📋 Current Logo Specifications</h3>
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <div class="spec-label">Primary Color</div>
+                        <div class="spec-value" id="specColor">#00D9B5</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Font Family</div>
+                        <div class="spec-value" id="specFont">Montserrat</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Font Weight</div>
+                        <div class="spec-value" id="specWeight">500 (Medium)</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Letter Spacing</div>
+                        <div class="spec-value" id="specSpacing">2px</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Delta Symbol</div>
+                        <div class="spec-value">Δ (Equilateral Triangle)</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Background</div>
+                        <div class="spec-value">Transparent (Alpha)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script>
+        // Load Google Fonts
+        const link = document.createElement('link');
+        link.href = 'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap';
+        link.rel = 'stylesheet';
+        document.head.appendChild(link);
+        
+        // Controls
+        const fontFamily = document.getElementById('fontFamily');
+        const fontWeight = document.getElementById('fontWeight');
+        const primaryColor = document.getElementById('primaryColor');
+        const letterSpacing = document.getElementById('letterSpacing');
+        const deltaSize = document.getElementById('deltaSize');
+        
+        function updateLogos() {
+            const color = primaryColor.value;
+            const font = fontFamily.value;
+            const weight = fontWeight.value;
+            const spacing = letterSpacing.value + 'px';
+            const deltaSizePercent = deltaSize.value;
+            
+            // Update text elements
+            document.querySelectorAll('.full-name, .medium-name').forEach(el => {
+                el.style.fontFamily = font;
+                el.style.fontWeight = weight;
+                el.style.letterSpacing = spacing;
+            });
+            
+            document.querySelectorAll('.gst-letter').forEach(el => {
+                el.style.fontFamily = font;
+                el.style.fontWeight = weight;
+            });
+            
+            // Update colored SVGs (not monochrome)
+            document.querySelectorAll('.preview-body:not(.dark) .delta-svg path:not([fill="#000000"]):not([fill="#ffffff"]), .preview-body.dark .delta-svg path[fill="#00D9B5"]').forEach(el => {
+                if (el.getAttribute('fill') !== '#000000' && el.getAttribute('fill') !== '#ffffff') {
+                    el.setAttribute('fill', color);
+                }
+            });
+            
+            // Update colored S in GST
+            document.querySelectorAll('.gst-letter:nth-child(2)').forEach(el => {
+                if (!el.closest('.preview-body').querySelector('.delta-svg path[fill="#000000"]')) {
+                    el.style.color = color;
+                }
+            });
+            
+            // Update delta sizes
+            document.querySelectorAll('.delta-svg').forEach(el => {
+                const baseSize = parseFloat(el.getAttribute('width'));
+                const newSize = (baseSize * deltaSizePercent / 100);
+                el.setAttribute('width', newSize);
+                el.setAttribute('height', newSize);
+            });
+            
+            // Update specs
+            document.getElementById('specColor').textContent = color.toUpperCase();
+            document.getElementById('specFont').textContent = font.replace(/['"]/g, '').split(',')[0];
+            document.getElementById('specWeight').textContent = weight;
+            document.getElementById('specSpacing').textContent = spacing;
+            document.getElementById('deltaSizeValue').textContent = deltaSizePercent + '%';
+        }
+        
+        fontFamily.addEventListener('change', updateLogos);
+        fontWeight.addEventListener('change', updateLogos);
+        primaryColor.addEventListener('input', updateLogos);
+        letterSpacing.addEventListener('input', updateLogos);
+        deltaSize.addEventListener('input', updateLogos);
+        
+        function downloadSVG(type) {
+            const color = primaryColor.value;
+            const font = fontFamily.value.replace(/['"]/g, '').split(',')[0];
+            const weight = fontWeight.value;
+            const spacing = letterSpacing.value;
+            
+            let svg = '';
+            let filename = '';
+            
+            const svgs = {
+                'full-horizontal': {
+                    content: `<svg width="700" height="100" viewBox="0 0 700 100" xmlns="http://www.w3.org/2000/svg">
+  <defs><style>@import url('https://fonts.googleapis.com/css2?family=${font.replace(' ', '+')}:wght@${weight}');
+  .text { font-family: '${font}', sans-serif; font-weight: ${weight}; letter-spacing: ${spacing}px; }</style></defs>
+  <path d="M 18 15 L 32 45 L 4 45 Z" fill="${color}"/>
+  <text x="55" y="40" class="text" fill="#2C3E50" font-size="28">GLOBAL STRATEGIC TECHNOLOGIES</text>
+</svg>`,
+                    filename: 'gst-logo-full-horizontal-color-transparent.svg'
+                },
+                'gstech-horizontal': {
+                    content: `<svg width="350" height="100" viewBox="0 0 350 100" xmlns="http://www.w3.org/2000/svg">
+  <defs><style>@import url('https://fonts.googleapis.com/css2?family=${font.replace(' ', '+')}:wght@${weight}');
+  .text { font-family: '${font}', sans-serif; font-weight: ${weight}; letter-spacing: ${spacing}px; }</style></defs>
+  <path d="M 20 15 L 38 50 L 2 50 Z" fill="${color}"/>
+  <text x="65" y="43" class="text" fill="#2C3E50" font-size="32">GS TECH</text>
+</svg>`,
+                    filename: 'gst-logo-gstech-horizontal-color-transparent.svg'
+                },
+                'gst-horizontal': {
+                    content: `<svg width="260" height="100" viewBox="0 0 260 100" xmlns="http://www.w3.org/2000/svg">
+  <defs><style>@import url('https://fonts.googleapis.com/css2?family=${font.replace(' ', '+')}:wght@${weight}');
+  .text { font-family: '${font}', sans-serif; font-weight: ${weight}; }</style></defs>
+  <text x="10" y="55" class="text" fill="#2C3E50" font-size="48">G</text>
+  <text x="65" y="55" class="text" fill="${color}" font-size="48">S</text>
+  <text x="120" y="55" class="text" fill="#2C3E50" font-size="48">T</text>
+  <path d="M 205 18 L 240 65 L 170 65 Z" fill="${color}"/>
+</svg>`,
+                    filename: 'gst-logo-gst-horizontal-color-transparent.svg'
+                },
+                'full-stacked': {
+                    content: `<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs><style>@import url('https://fonts.googleapis.com/css2?family=${font.replace(' ', '+')}:wght@${weight}');
+  .text { font-family: '${font}', sans-serif; font-weight: ${weight}; letter-spacing: ${spacing}px; text-anchor: middle; }</style></defs>
+  <path d="M 200 80 L 260 180 L 140 180 Z" fill="${color}"/>
+  <text x="200" y="240" class="text" fill="#2C3E50" font-size="24">GLOBAL STRATEGIC</text>
+  <text x="200" y="275" class="text" fill="#2C3E50" font-size="24">TECHNOLOGIES</text>
+</svg>`,
+                    filename: 'gst-logo-full-stacked-color-transparent.svg'
+                },
+                'gstech-stacked': {
+                    content: `<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <defs><style>@import url('https://fonts.googleapis.com/css2?family=${font.replace(' ', '+')}:wght@${weight}');
+  .text { font-family: '${font}', sans-serif; font-weight: ${weight}; letter-spacing: ${spacing}px; text-anchor: middle; }</style></defs>
+  <path d="M 150 70 L 200 160 L 100 160 Z" fill="${color}"/>
+  <text x="150" y="215" class="text" fill="#2C3E50" font-size="32">GS TECH</text>
+</svg>`,
+                    filename: 'gst-logo-gstech-stacked-color-transparent.svg'
+                },
+                'gst-icon': {
+                    content: `<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <defs><style>@import url('https://fonts.googleapis.com/css2?family=${font.replace(' ', '+')}:wght@${weight}');
+  .text { font-family: '${font}', sans-serif; font-weight: ${weight}; }</style></defs>
+  <path d="M 150 60 L 210 180 L 90 180 Z" fill="${color}"/>
+  <text x="60" y="255" class="text" fill="#2C3E50" font-size="48">G</text>
+  <text x="125" y="255" class="text" fill="${color}" font-size="48">S</text>
+  <text x="190" y="255" class="text" fill="#2C3E50" font-size="48">T</text>
+</svg>`,
+                    filename: 'gst-logo-icon-color-transparent.svg'
+                }
+            };
+            
+            if (svgs[type]) {
+                const blob = new Blob([svgs[type].content], { type: 'image/svg+xml' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = svgs[type].filename;
+                a.click();
+                URL.revokeObjectURL(url);
+            }
+        }
+        
+        async function downloadAllSVGs() {
+            alert('To download all variations:\n\n1. Click each individual download button\n2. Or use a professional design tool to export the complete system\n3. Recommended: Save these SVGs and convert to PNG using:\n   • CloudConvert (cloudconvert.com)\n   • Inkscape (free desktop app)\n   • Adobe Illustrator\n\nYou need:\n• Full Name (horizontal, stacked, monochrome)\n• GS Tech (horizontal, stacked, monochrome)\n• GST (horizontal, icon, monochrome)\n• All in PNG: 512px, 1024px, 2048px');
+        }
+    </script>
+</body>
+</html>
