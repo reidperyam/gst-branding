@@ -4,7 +4,7 @@ Owned by this repo (not synced from the website). Complements
 [BRAND_GUIDELINES.md § Brand Asset: Delta Icon](BRAND_GUIDELINES.md#brand-asset-delta-icon),
 which is authoritative on colour and context; this file adds the geometry and the rules
 for non-web use. Rendered examples: [index.html](../index.html) ·
-<https://reidperyam.github.io/gst-branding/>.
+<https://global-strategic-technologies.github.io/gst-branding/>.
 
 ## The mark
 

@@ -7,7 +7,7 @@ Technologies** (GST). Everything here mirrors what is live on
 source of truth and this repo is a published, consumable snapshot of it.
 
 **Brand asset page** (every logo, favicon, social image and template, on light and dark,
-with when-to-use guidance): **<https://reidperyam.github.io/gst-branding/>** — or open
+with when-to-use guidance): **<https://global-strategic-technologies.github.io/gst-branding/>** — or open
 `index.html` from disk.
 
 The rendered design-system reference (colour swatches, type specimens, every UI component
