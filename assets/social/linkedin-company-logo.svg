@@ -23,13 +23,13 @@
   <g transform="translate(70, 30) scale(2.5)">
     <path d="M 32 12 L 52 52 L 12 52 Z" 
           fill="none" 
-          stroke="#00D9B5" 
+          stroke="#05cd99" 
           stroke-width="6" 
           stroke-linejoin="miter"/>
   </g>
   
   <!-- GST Letters (positioned below Delta, spread wide) -->
   <text x="75" y="240" class="logo-text" fill="#2C3E50" font-size="68">G</text>
-  <text x="150" y="240" class="logo-text" fill="#00D9B5" font-size="68">S</text>
+  <text x="150" y="240" class="logo-text" fill="#05cd99" font-size="68">S</text>
   <text x="225" y="240" class="logo-text" fill="#2C3E50" font-size="68">T</text>
 </svg>

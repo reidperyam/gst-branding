@@ -6,14 +6,20 @@ Technologies** (GST). Everything here mirrors what is live on
 [gst-website](https://github.com/Global-Strategic-Technologies/gst-website) repo is the
 source of truth and this repo is a published, consumable snapshot of it.
 
-The rendered brand reference (colour swatches, type specimens, every UI component in
-light/dark and all six palettes) is at **<https://globalstrategic.tech/brand>**.
+**Brand asset page** (every logo, favicon, social image and template, on light and dark,
+with when-to-use guidance): **<https://reidperyam.github.io/gst-branding/>** — or open
+`index.html` from disk.
+
+The rendered design-system reference (colour swatches, type specimens, every UI component
+in light/dark and all six palettes) is at **<https://globalstrategic.tech/brand>**.
 
 ## Layout
 
 ```
+index.html           Brand asset page (GitHub Pages) — every asset, light + dark, usage notes
 guidelines/          Written brand & style guidance (start here for non-web work)
   BRAND_GUIDELINES.md    colours, palettes, company name, voice, delta icon, a11y
+  LOGO_USAGE.md          mark & wordmark geometry, minimum size, clear space (owned here)
   STYLES_GUIDE.md        CSS conventions & component patterns
   VARIABLES_REFERENCE.md full design-token catalogue (328 custom properties)
   TYPOGRAPHY_REFERENCE.md
@@ -30,10 +36,15 @@ design-system/       The shipped CSS system (start here for anything on the web)
 
 assets/              Ready-to-use brand files
   logo/                  delta icon (teal / dark / white stroke), app icon, BIMI logo
+  wordmark/              GST header lockup as SVG (font embedded) + @2x PNG, light & dark
   favicon/               favicon.svg, favicon.ico, apple-touch-icon, PWA manifest icons
   social/                OG image 1200×630, LinkedIn company logo (svg/png), LinkedIn cover
+  social/templates/      editable post templates: 1080×1080, 1200×675, 1200×630
 
-scripts/sync-from-website.sh   regenerate all of the above from a local gst-website checkout
+scripts/sync-from-website.sh   regenerate design-system/ + guidelines/ + website assets
+scripts/export-pdf.sh          print the asset page and guidelines to PDF (headless Chrome)
+.github/workflows/             weekly drift check against gst-website@master
+CHANGELOG.md · LICENSE
 ```
 
 ## Quick start
@@ -60,7 +71,7 @@ the files in `assets/`.
 | Secondary amber | `#cc8800` light / `#ffaa33` dark (`--color-secondary`) — attention / CTA |
 | Backgrounds | `#ffffff` / `#f5f5f5` light · `#0a0a0a` / `#141414` dark |
 | Typeface | **GST Mono** (Geist Mono variable, weights 100–900), mono everywhere |
-| Mark | The delta (Δ) — a stroked triangle; teal for brand, amber to signal action |
+| Mark | The delta (Δ) — a stroked triangle; teal for brand, amber to signal action. **Not** the retired `#00D9B5` |
 | Name | "Global Strategic Technologies" (legal: …LLC), short form "GST" — never "Global Strategic Technology" or "Global Strategic Tech" |
 
 Full rules, contrast requirements and the six alternative palettes are in
@@ -76,7 +87,11 @@ git add -A && git commit -m "Sync from gst-website <sha>"
 ```
 
 `design-system/SOURCE.json` records the website commit and bundle hash each snapshot
-was taken from.
+was taken from. Releases are tagged `vYYYY.MM` — see `CHANGELOG.md`. The drift-check
+workflow fails when `guidelines/` or the website-owned assets fall behind `master`.
+
+`guidelines/LOGO_USAGE.md`, `assets/wordmark/`, `assets/social/templates/` and
+`index.html` are owned by this repo and are not touched by the sync.
 
 ## Licence
 

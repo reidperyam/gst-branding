@@ -12,6 +12,7 @@ that repo have been rewritten to absolute GitHub URLs.
 | [STYLES_GUIDE.md](STYLES_GUIDE.md) | CSS conventions, component patterns, anti-patterns | Anyone writing CSS/markup against the system |
 | [VARIABLES_REFERENCE.md](VARIABLES_REFERENCE.md) | Complete design-token catalogue (colours, spacing, typography, shadows) | Developers |
 | [TYPOGRAPHY_REFERENCE.md](TYPOGRAPHY_REFERENCE.md) | Font stacks, size scale, utility classes | Developers, designers |
+| [LOGO_USAGE.md](LOGO_USAGE.md) | Mark & wordmark geometry, minimum size, clear space, backgrounds, don'ts — *owned here, not synced* | Anyone placing the logo |
 
 **Start with BRAND_GUIDELINES.md** if you are producing non-web material (decks, docs,
 social); start with **STYLES_GUIDE.md** if you are building something with

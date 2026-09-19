@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GST Brand Assets</title>
+<meta name="description" content="Every Global Strategic Technologies brand asset — mark, wordmark, favicons, social images, templates — with when and how to use each.">
+<link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="design-system/styles.css">
+<style>
+  /* Page-only rules, composed from design-system tokens. No new class vocabulary. */
+  body { margin: 0; font-family: var(--font-family-mono); color: var(--text-primary); }
+  .page { max-width: 72rem; margin: 0 auto; padding: var(--spacing-2xl) var(--spacing-lg) var(--spacing-3xl); }
+  .topbar { display: flex; flex-wrap: wrap; gap: var(--spacing-md); align-items: center; justify-content: space-between; padding-bottom: var(--spacing-lg); border-bottom: 1px solid light-dark(var(--border-light), var(--border-dark-default)); margin-bottom: var(--spacing-2xl); }
+  .topbar img { height: 40px; display: block; }
+  .controls { display: flex; gap: var(--spacing-sm); flex-wrap: wrap; }
+  .controls button, .controls select { font: inherit; font-size: var(--text-sm); padding: var(--spacing-xs) var(--spacing-md); background: var(--bg-light-alt); color: var(--text-primary); border: 1px solid light-dark(var(--border-light), var(--border-dark-default)); cursor: pointer; }
+  .controls button[aria-pressed="true"] { border-color: var(--color-primary); color: var(--color-primary); }
+  nav.toc { display: flex; flex-wrap: wrap; gap: var(--spacing-sm) var(--spacing-lg); font-size: var(--text-sm); margin-bottom: var(--spacing-3xl); }
+  nav.toc a { color: var(--text-secondary); text-decoration: none; border-bottom: 1px solid var(--color-primary); }
+  section { margin-bottom: var(--spacing-3xl); }
+  h1 { font-size: var(--text-3xl); font-weight: 900; letter-spacing: -0.03em; margin: 0 0 var(--spacing-sm); }
+  h2 { font-size: var(--text-2xl); font-weight: 900; letter-spacing: -0.02em; margin: 0 0 var(--spacing-sm); }
+  h2 .d { color: var(--color-primary); }
+  h3 { font-size: var(--text-base); font-weight: 700; margin: 0 0 var(--spacing-xs); }
+  p.lead { color: var(--text-secondary); max-width: 60ch; margin: 0 0 var(--spacing-xl); }
+  a { color: var(--color-primary); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: var(--spacing-lg); }
+  .asset { border: 1px solid light-dark(var(--border-light), var(--border-dark-default)); background: var(--bg-light); display: flex; flex-direction: column; }
+  .asset .previews { display: grid; grid-template-columns: 1fr 1fr; }
+  .asset .previews > div { aspect-ratio: 4 / 3; display: grid; place-items: center; padding: var(--spacing-md); }
+  .asset .previews .on-light { background: #ffffff; }
+  .asset .previews .on-dark { background: #0a0a0a; }
+  .asset .previews .on-teal { background: var(--color-primary); }
+  .asset .previews.single { grid-template-columns: 1fr; }
+  .asset .previews.single > div { aspect-ratio: auto; padding: 0; }
+  .asset .previews img { max-width: 100%; max-height: 100%; display: block; }
+  .asset .previews img.sm { width: 48px; }
+  .asset .previews img.md { width: 96px; }
+  .asset .meta { padding: var(--spacing-md); display: flex; flex-direction: column; gap: var(--spacing-xs); font-size: var(--text-sm); }
+  .asset .meta p { margin: 0; }
+  .asset code { font-size: var(--text-xs); color: var(--text-secondary); word-break: break-all; }
+  .asset .use b { color: var(--color-primary); }
+  .asset .dont { color: var(--text-muted); font-size: var(--text-xs); }
+  .asset .dl { margin-top: auto; padding-top: var(--spacing-sm); display: flex; gap: var(--spacing-sm); flex-wrap: wrap; }
+  .asset .dl a { font-size: var(--text-xs); text-decoration: none; border-bottom: 1px solid var(--color-primary); }
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); gap: var(--spacing-md); }
+  .swatch { border: 1px solid light-dark(var(--border-light), var(--border-dark-default)); }
+  .swatch div { height: 4rem; }
+  .swatch p { margin: 0; padding: var(--spacing-sm); font-size: var(--text-xs); }
+  .swatch p b { display: block; font-size: var(--text-sm); }
+  table { border-collapse: collapse; width: 100%; font-size: var(--text-sm); }
+  th, td { text-align: left; padding: var(--spacing-sm); border-bottom: 1px solid light-dark(var(--border-light), var(--border-dark-default)); vertical-align: top; }
+  th { color: var(--text-secondary); font-weight: 700; font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; }
+  td.no { color: var(--color-error-ink); }
+  td.yes { color: var(--color-success-ink); }
+  .callout { border-left: 4px solid var(--color-secondary); background: var(--bg-light-alt); padding: var(--spacing-md) var(--spacing-lg); font-size: var(--text-sm); margin: var(--spacing-lg) 0; }
+  .callout b { color: var(--color-secondary-ink); }
+  .wordmark-spec { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); align-items: start; }
+  .wordmark-spec .previews > div { aspect-ratio: 3 / 1; }
+  .note { margin-top: var(--spacing-sm); font-size: var(--text-xs); color: var(--text-muted); }
+  footer { border-top: 1px solid light-dark(var(--border-light), var(--border-dark-default)); padding-top: var(--spacing-lg); font-size: var(--text-xs); color: var(--text-muted); }
+  @media (max-width: 640px) { .wordmark-spec { grid-template-columns: 1fr; } .asset .previews { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="topbar">
+  <a href="https://globalstrategic.tech" aria-label="GST home"><img src="assets/wordmark/gst-wordmark-on-light.svg" alt="GST" id="wm"></a>
+  <div class="controls" role="group" aria-label="Preview theme">
+    <button type="button" id="t-light" aria-pressed="true">Light</button>
+    <button type="button" id="t-dark" aria-pressed="false">Dark</button>
+    <select id="palette" aria-label="Palette">
+      <option value="">Default palette</option>
+      <option value="palette-0">palette-0</option><option value="palette-1">palette-1</option><option value="palette-2">palette-2</option>
+      <option value="palette-3">palette-3</option><option value="palette-4">palette-4</option><option value="palette-5">palette-5</option>
+    </select>
+  </div>
+</header>
+
+<h1>Brand assets</h1>
+<p class="lead">Every file in this repo's <code>assets/</code>, shown on light and dark, with what it is for. Colours, type and UI components are documented on the live site at <a href="https://globalstrategic.tech/brand">globalstrategic.tech/brand</a>; the written rules are in <a href="guidelines/">guidelines/</a>.</p>
+
+<nav class="toc" aria-label="Sections">
+  <a href="#mark">Mark</a><a href="#wordmark">Wordmark</a><a href="#favicon">Favicons &amp; app icons</a><a href="#social">Social</a><a href="#templates">Templates</a><a href="#colour">Colour</a><a href="#name">Name</a><a href="#rules">Rules</a>
+</nav>
+
+<section id="mark">
+  <h2><span class="d">Δ</span> The mark</h2>
+  <p class="lead">A stroked delta on a 64-unit grid, stroke 6, mitred. Pick the variant by background; never recolour the file. On the web it is inline SVG and inherits <code>currentColor</code>.</p>
+  <div class="grid">
+    <article class="asset">
+      <div class="previews"><div class="on-light"><img class="md" src="assets/logo/gst-delta-icon-teal-stroke-thick.svg" alt="Teal delta on white"></div><div class="on-dark"><img class="md" src="assets/logo/gst-delta-icon-teal-stroke-thick.svg" alt="Teal delta on black"></div></div>
+      <div class="meta"><h3>Delta — teal</h3><code>assets/logo/gst-delta-icon-teal-stroke-thick.svg</code>
+        <p class="use"><b>Use:</b> the default. Any light or near-black background. Navigation, documents, decks, decoration.</p>
+        <p class="dont">Not on teal or mid-tone/busy backgrounds.</p>
+        <div class="dl"><a href="assets/logo/gst-delta-icon-teal-stroke-thick.svg" download>SVG</a></div></div>
+    </article>
+    <article class="asset">
+      <div class="previews"><div class="on-light"><img class="md" src="assets/logo/gst-delta-icon-dark-stroke-thick.svg" alt="Dark delta on white"></div><div class="on-teal"><img class="md" src="assets/logo/gst-delta-icon-dark-stroke-thick.svg" alt="Dark delta on teal"></div></div>
+      <div class="meta"><h3>Delta — ink</h3><code>assets/logo/gst-delta-icon-dark-stroke-thick.svg</code>
+        <p class="use"><b>Use:</b> single-colour print, engraving, documents where teal is unavailable, or on a teal block when white is too bright.</p>
+        <p class="dont">Not on dark backgrounds.</p>
+        <div class="dl"><a href="assets/logo/gst-delta-icon-dark-stroke-thick.svg" download>SVG</a></div></div>
+    </article>
+    <article class="asset">
+      <div class="previews"><div class="on-dark"><img class="md" src="assets/logo/gst-delta-icon-white-stroke-thick.svg" alt="White delta on black"></div><div class="on-teal"><img class="md" src="assets/logo/gst-delta-icon-white-stroke-thick.svg" alt="White delta on teal"></div></div>
+      <div class="meta"><h3>Delta — white</h3><code>assets/logo/gst-delta-icon-white-stroke-thick.svg</code>
+        <p class="use"><b>Use:</b> over photography (dark regions), teal blocks, dark merchandise.</p>
+        <p class="dont">Invisible on white — never on light surfaces.</p>
+        <div class="dl"><a href="assets/logo/gst-delta-icon-white-stroke-thick.svg" download>SVG</a></div></div>
+    </article>
+    <article class="asset">
+      <div class="previews"><div class="on-light"><img class="md" src="assets/logo/gst-icon.svg" alt="App icon source"></div><div class="on-light"><img class="md" src="assets/logo/gst-logo-bimi.svg" alt="BIMI logo"></div></div>
+      <div class="meta"><h3>App icon &amp; BIMI sources</h3><code>assets/logo/gst-icon.svg · gst-logo-bimi.svg</code>
+        <p class="use"><b>Use:</b> <code>gst-icon.svg</code> is the OS/app-icon source (the platform recolours it). <code>gst-logo-bimi.svg</code> is SVG Tiny PS for the email BIMI DNS record only.</p>
+        <p class="dont">Not for placing in documents — use the delta variants above.</p>
+        <div class="dl"><a href="assets/logo/gst-icon.svg" download>icon SVG</a><a href="assets/logo/gst-logo-bimi.svg" download>BIMI SVG</a></div></div>
+    </article>
+  </div>
+</section>
+
+<section id="wordmark">
+  <h2><span class="d">Δ</span> The wordmark</h2>
+  <p class="lead">The site's header lockup: delta at 1 em, <b>GST</b> in GST Mono 900 with −0.05 em tracking and a teal <b>S</b>, then an 8 px teal square. Minimum height 24 px. Clear space: half the cap height on all sides.</p>
+  <div class="wordmark-spec">
+    <article class="asset">
+      <div class="previews"><div class="on-light"><img src="assets/wordmark/gst-wordmark-on-light.svg" alt="GST wordmark on light" style="height:40px"></div><div class="on-dark"><img src="assets/wordmark/gst-wordmark-on-dark.svg" alt="GST wordmark on dark" style="height:40px"></div></div>
+      <div class="meta"><h3>Wordmark</h3><code>assets/wordmark/gst-wordmark-on-{light,dark}.svg</code>
+        <p class="use"><b>Use:</b> decks, documents, email footers, partner listings — wherever the site header would appear. The font is embedded in the SVG; use the <code>@2x.png</code> where SVG fonts are not honoured (Office, some CMSs).</p>
+        <p class="dont">Do not rebuild it from type; do not drop the dot or the teal S; do not set it under 24 px tall.</p>
+        <div class="dl"><a href="assets/wordmark/gst-wordmark-on-light.svg" download>light SVG</a><a href="assets/wordmark/gst-wordmark-on-dark.svg" download>dark SVG</a><a href="assets/wordmark/gst-wordmark-on-light@2x.png" download>light PNG</a><a href="assets/wordmark/gst-wordmark-on-dark@2x.png" download>dark PNG</a></div></div>
+    </article>
+    <div>
+      <table>
+        <tr><th>Part</th><th>Spec</th></tr>
+        <tr><td>Delta</td><td>1 em, stroke <code>#05cd99</code></td></tr>
+        <tr><td>Gap</td><td>0.125 em (<code>--spacing-xs</code>)</td></tr>
+        <tr><td>GST</td><td>GST Mono, 900, uppercase, letter-spacing −0.05 em; S in teal</td></tr>
+        <tr><td>Gap</td><td>0.25 em (<code>--spacing-sm</code>)</td></tr>
+        <tr><td>Dot</td><td>8 × 8 px, <code>#05cd99</code> (pulses on the web)</td></tr>
+        <tr><td>Ink</td><td><code>#1a1a1a</code> on light · <code>#f5f5f5</code> on dark</td></tr>
+      </table>
+      <p class="note">Source of truth: <code>HeaderLogo.astro</code> in gst-website. Full rules in <a href="guidelines/LOGO_USAGE.md">LOGO_USAGE.md</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="favicon">
+  <h2><span class="d">Δ</span> Favicons &amp; app icons</h2>
+  <p class="lead">Already wired into the website; reuse for any GST-branded web property, dashboard or internal tool so tabs and home-screen icons match.</p>
+  <div class="grid">
+    <article class="asset">
+      <div class="previews"><div class="on-light"><img class="sm" src="assets/favicon/favicon.svg" alt="SVG favicon"></div><div class="on-dark"><img class="sm" src="assets/favicon/favicon.svg" alt="SVG favicon on dark"></div></div>
+      <div class="meta"><h3>Favicon — SVG</h3><code>assets/favicon/favicon.svg</code>
+        <p class="use"><b>Use:</b> <code>&lt;link rel="icon" type="image/svg+xml"&gt;</code> — the primary favicon for modern browsers.</p>
+        <div class="dl"><a href="assets/favicon/favicon.svg" download>SVG</a></div></div>
+    </article>
+    <article class="asset">
+      <div class="previews"><div class="on-light"><img class="sm" src="assets/favicon/favicon.ico" alt="ICO favicon"></div><div class="on-dark"><img class="sm" src="assets/favicon/favicon.ico" alt="ICO favicon on dark"></div></div>
+      <div class="meta"><h3>Favicon — ICO</h3><code>assets/favicon/favicon.ico</code>
+        <p class="use"><b>Use:</b> legacy fallback at <code>/favicon.ico</code>; carries 16, 32 and 48 px renders.</p>
+        <div class="dl"><a href="assets/favicon/favicon.ico" download>ICO</a></div></div>
+    </article>
+    <article class="asset">
+      <div class="previews"><div class="on-light"><img class="md" src="assets/favicon/apple-touch-icon.png" alt="Apple touch icon"></div><div class="on-dark"><img class="md" src="assets/favicon/apple-touch-icon.png" alt="Apple touch icon on dark"></div></div>
+      <div class="meta"><h3>Apple touch icon</h3><code>assets/favicon/apple-touch-icon.png</code> · 180×180
+        <p class="use"><b>Use:</b> <code>&lt;link rel="apple-touch-icon"&gt;</code>. Opaque dark background by design — iOS rounds the corners.</p>
+        <div class="dl"><a href="assets/favicon/apple-touch-icon.png" download>PNG</a></div></div>
+    </article>
+    <article class="asset">
+      <div class="previews"><div class="on-light"><img class="md" src="assets/favicon/web-app-manifest-192.png" alt="PWA icon 192"></div><div class="on-dark"><img class="md" src="assets/favicon/web-app-manifest-512.png" alt="PWA icon 512"></div></div>
+      <div class="meta"><h3>PWA manifest icons</h3><code>assets/favicon/web-app-manifest-{192,512}.png</code>
+        <p class="use"><b>Use:</b> <code>manifest.webmanifest</code> icons for installable web apps and Android home screens.</p>
+        <div class="dl"><a href="assets/favicon/web-app-manifest-192.png" download>192</a><a href="assets/favicon/web-app-manifest-512.png" download>512</a></div></div>
+    </article>
+  </div>
+</section>
+
+<section id="social">
+  <h2><span class="d">Δ</span> Social &amp; sharing images</h2>
+  <div class="grid">
+    <article class="asset">
+      <div class="previews single"><div><img src="assets/social/og-image-1200x630.png" alt="Open Graph image"></div></div>
+      <div class="meta"><h3>Open Graph image</h3><code>assets/social/og-image-1200x630.png</code> · 1200×630
+        <p class="use"><b>Use:</b> default <code>og:image</code> / Twitter card for any GST page without its own image; link previews in Slack, LinkedIn, iMessage.</p>
+        <div class="dl"><a href="assets/social/og-image-1200x630.png" download>PNG</a></div></div>
+    </article>
+    <article class="asset">
+      <div class="previews"><div class="on-light"><img class="md" src="assets/social/linkedin-company-logo.svg" alt="LinkedIn company logo"></div><div class="on-dark"><img class="md" src="assets/social/linkedin-company-logo.png" alt="LinkedIn company logo PNG"></div></div>
+      <div class="meta"><h3>LinkedIn company logo</h3><code>assets/social/linkedin-company-logo.{svg,png}</code> · square
+        <p class="use"><b>Use:</b> the LinkedIn Page avatar (upload the PNG). Also the square avatar for any directory, vendor portal or partner listing.</p>
+        <div class="dl"><a href="assets/social/linkedin-company-logo.png" download>PNG</a><a href="assets/social/linkedin-company-logo.svg" download>SVG</a></div></div>
+    </article>
+    <article class="asset">
+      <div class="previews single"><div><img src="assets/social/linkedin-cover-2256x382.png" alt="LinkedIn cover"></div></div>
+      <div class="meta"><h3>LinkedIn cover</h3><code>assets/social/linkedin-cover-2256x382.png</code> · 2256×382
+        <p class="use"><b>Use:</b> LinkedIn Page banner. Keep the centre-safe area clear of text when adapting.</p>
+        <div class="dl"><a href="assets/social/linkedin-cover-2256x382.png" download>PNG</a></div></div>
+    </article>
+  </div>
+</section>
+
+<section id="templates">
+  <h2><span class="d">Δ</span> Post templates</h2>
+  <p class="lead">Editable SVGs with the font embedded: open in any vector editor or a browser, replace the placeholder lines, export at 1×. Dark ground, 50 px design grid, delta top-left, teal dot bottom-right.</p>
+  <div class="grid">
+    <article class="asset">
+      <div class="previews single"><div><img src="assets/social/templates/social-square-1080x1080.preview.png" alt="Square template"></div></div>
+      <div class="meta"><h3>Square 1080×1080</h3><code>assets/social/templates/social-square-1080x1080.svg</code>
+        <p class="use"><b>Use:</b> LinkedIn and Instagram feed posts, event announcements.</p>
+        <div class="dl"><a href="assets/social/templates/social-square-1080x1080.svg" download>SVG</a></div></div>
+    </article>
+    <article class="asset">
+      <div class="previews single"><div><img src="assets/social/templates/social-landscape-1200x675.preview.png" alt="Landscape template"></div></div>
+      <div class="meta"><h3>Landscape 1200×675</h3><code>assets/social/templates/social-landscape-1200x675.svg</code>
+        <p class="use"><b>Use:</b> LinkedIn link/article cards, X posts, newsletter headers.</p>
+        <div class="dl"><a href="assets/social/templates/social-landscape-1200x675.svg" download>SVG</a></div></div>
+    </article>
+    <article class="asset">
+      <div class="previews single"><div><img src="assets/social/templates/social-og-1200x630.preview.png" alt="OG template"></div></div>
+      <div class="meta"><h3>Open Graph 1200×630</h3><code>assets/social/templates/social-og-1200x630.svg</code>
+        <p class="use"><b>Use:</b> per-page <code>og:image</code>s for articles, hub tools and reports.</p>
+        <div class="dl"><a href="assets/social/templates/social-og-1200x630.svg" download>SVG</a></div></div>
+    </article>
+  </div>
+</section>
+
+<section id="colour">
+  <h2><span class="d">Δ</span> Core colour</h2>
+  <p class="lead">The brand-level palette. Domain and tool colours, the six alternative palettes and contrast rules are in <a href="guidelines/BRAND_GUIDELINES.md">BRAND_GUIDELINES.md</a>.</p>
+  <div class="swatches">
+    <div class="swatch"><div style="background:#05cd99"></div><p><b>Primary teal</b>#05cd99 · <code>--color-primary</code><br>Same in both themes. Brand, links, borders, active states.</p></div>
+    <div class="swatch"><div style="background:#04a87a"></div><p><b>Teal dark</b>#04a87a · <code>--color-primary-dark</code><br>Hover / pressed.</p></div>
+    <div class="swatch"><div style="background:#cc8800"></div><p><b>Amber (light)</b>#cc8800 · <code>--color-secondary</code><br>Attention, CTA, warnings.</p></div>
+    <div class="swatch"><div style="background:#ffaa33"></div><p><b>Amber (dark)</b>#ffaa33 · <code>--color-secondary</code><br>Same role, dark theme.</p></div>
+    <div class="swatch"><div style="background:#ffffff;border-bottom:1px solid #eee"></div><p><b>White</b>#ffffff · <code>--bg-light</code></p></div>
+    <div class="swatch"><div style="background:#f5f5f5"></div><p><b>Off-white</b>#f5f5f5 · <code>--bg-light-alt</code></p></div>
+    <div class="swatch"><div style="background:#141414"></div><p><b>Charcoal</b>#141414 · <code>--bg-dark-tertiary</code></p></div>
+    <div class="swatch"><div style="background:#0a0a0a"></div><p><b>Near black</b>#0a0a0a · <code>--bg-dark</code></p></div>
+    <div class="swatch"><div style="background:#1a1a1a"></div><p><b>Ink</b>#1a1a1a · text on light</p></div>
+    <div class="swatch"><div style="background:#f5f5f5"></div><p><b>Ink (dark)</b>#f5f5f5 · text on dark</p></div>
+  </div>
+  <div class="callout"><b>Retired:</b> <code>#00D9B5</code>. Assets exported before September 2026 carry it — replace them with the files on this page.</div>
+</section>
+
+<section id="name">
+  <h2><span class="d">Δ</span> The name</h2>
+  <table>
+    <tr><th>Context</th><th>Write</th><th>Never</th></tr>
+    <tr><td>Marketing copy, titles, meta</td><td class="yes">GST</td><td class="no">Global Strategic Technology · Global Strategic Tech · GS Tech</td></tr>
+    <tr><td>First mention in long-form</td><td class="yes">Global Strategic Technologies (GST)</td><td class="no">GST alone before the full name is established</td></tr>
+    <tr><td>Legal, contracts, invoices</td><td class="yes">Global Strategic Technologies LLC</td><td class="no">GST alone</td></tr>
+  </table>
+</section>
+
+<section id="rules">
+  <h2><span class="d">Δ</span> Rules in one breath</h2>
+  <table>
+    <tr><th>Do</th><th>Don't</th></tr>
+    <tr><td class="yes">Pick the mark variant for the background</td><td class="no">Recolour a file, or put teal on teal / white on white</td></tr>
+    <tr><td class="yes">Keep the stroke, mitred joins and proportions</td><td class="no">Fill the triangle, round it, rotate, skew, add shadows or gradients</td></tr>
+    <tr><td class="yes">Set GST in GST Mono 900 with the teal S and the dot</td><td class="no">Retype the wordmark in another face or weight</td></tr>
+    <tr><td class="yes">Give the mark clear space of 2× its stroke width</td><td class="no">Crowd it with text, rules or other logos</td></tr>
+    <tr><td class="yes">Use amber only to signal action or attention</td><td class="no">Use amber, or anything but teal/ink/white, for the logo</td></tr>
+  </table>
+</section>
+
+<footer>
+  Source: <a href="https://github.com/reidperyam/gst-branding">reidperyam/gst-branding</a> · design system snapshot of <a href="https://github.com/Global-Strategic-Technologies/gst-website">gst-website</a> (see <code>design-system/SOURCE.json</code>) · © Global Strategic Technologies LLC · font: Geist Mono, OFL.
+</footer>
+</div>
+<script>
+  var root = document.documentElement, wm = document.getElementById('wm');
+  function setTheme(dark) {
+    root.classList.toggle('dark-theme', dark);
+    document.getElementById('t-light').setAttribute('aria-pressed', String(!dark));
+    document.getElementById('t-dark').setAttribute('aria-pressed', String(dark));
+    wm.src = dark ? 'assets/wordmark/gst-wordmark-on-dark.svg' : 'assets/wordmark/gst-wordmark-on-light.svg';
+    try { localStorage.setItem('gst-brand-theme', dark ? 'dark' : 'light'); } catch (e) {}
+  }
+  document.getElementById('t-light').onclick = function () { setTheme(false); };
+  document.getElementById('t-dark').onclick = function () { setTheme(true); };
+  document.getElementById('palette').onchange = function (e) {
+    root.className = root.className.replace(/\bpalette-\d\b/g, '').trim();
+    if (e.target.value) root.classList.add(e.target.value);
+  };
+  var pref = null; try { pref = localStorage.getItem('gst-brand-theme'); } catch (e) {}
+  setTheme(pref ? pref === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches);
+</script>
+</body>
+</html>

@@ -133,14 +133,14 @@ measured 222 / 222 / 240px before the pin and 253.2 / 252.7 / 253.2px after — 
 8% engine spread collapsed to 0.5px. That band has since been restructured into a
 two-field list and no longer sets the same string, so those are the pin's result
 for the copy it was measured against, not live numbers. **The live pair is
-recorded once, in [Sash.astro](https://github.com/Global-Strategic-Technologies/gst-website/blob/main/src/components/Sash.astro)'s header block** —
+recorded once, in [Sash.astro](https://github.com/Global-Strategic-Technologies/gst-website/blob/master/src/components/Sash.astro)'s header block** —
 go there, not to a copy, and prove new sash copy by running
 `announcement-sash.test.ts` rather than by counting characters.
 
 **The pin also made things WIDER, which broke something.** Geist Mono's 0.6em
 advance is wider than the 0.55em Consolas that Windows resolved `monospace` to,
 so every mono string grew ~9%. The footer's four-link row
-([FooterLinks.astro](https://github.com/Global-Strategic-Technologies/gst-website/blob/main/src/components/FooterLinks.astro)) gained 16.2px across
+([FooterLinks.astro](https://github.com/Global-Strategic-Technologies/gst-website/blob/master/src/components/FooterLinks.astro)) gained 16.2px across
 its 27 characters — exactly enough to push it off one line on a 430px phone. It
 shipped because the narrow-viewport suite asserted only that nothing left the
 screen, which a wrapped row satisfies. When changing this face, the risk is not

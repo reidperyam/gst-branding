@@ -1,0 +1,39 @@
+name: Design-system drift check
+# Fails if guidelines/ or the brand assets in this repo differ from what gst-website@master
+# currently ships. (The compiled stylesheet and component cards come from the website's
+# git-ignored ds-bundle, which needs the website's design-sync tooling to regenerate, so
+# they are checked by SOURCE.json review rather than here.)
+on:
+  push: { branches: [master] }
+  pull_request:
+  schedule: [{ cron: '0 6 * * 1' }]
+  workflow_dispatch:
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: Global-Strategic-Technologies/gst-website
+          ref: master
+          path: gst-website
+          token: ${{ secrets.GST_WEBSITE_READ_TOKEN || github.token }}
+      - name: Compare guidelines and assets
+        run: |
+          GH=https://github.com/Global-Strategic-Technologies/gst-website/blob/master
+          fail=0
+          for f in BRAND_GUIDELINES STYLES_GUIDE VARIABLES_REFERENCE TYPOGRAPHY_REFERENCE; do
+            sed -e "s#](\.\./\.\./\.\./#](${GH}/#g" -e "s#](\.\./\.\./#](${GH}/src/#g" -e "s#](\.\./#](${GH}/src/docs/#g" \
+              gst-website/src/docs/styles/$f.md | diff -q - guidelines/$f.md >/dev/null || { echo "::error::guidelines/$f.md differs from gst-website"; fail=1; }
+          done
+          for pair in "public/images/logo/gst-delta-icon-teal-stroke-thick.svg:assets/logo/gst-delta-icon-teal-stroke-thick.svg" \
+                      "public/images/icon.svg:assets/logo/gst-icon.svg" \
+                      "public/branding/logo-bimi.svg:assets/logo/gst-logo-bimi.svg" \
+                      "public/favicon.svg:assets/favicon/favicon.svg" \
+                      "public/og-image.png:assets/social/og-image-1200x630.png"; do
+            src=${pair%%:*}; dst=${pair##*:}
+            cmp -s "gst-website/$src" "$dst" || { echo "::error::$dst differs from gst-website/$src"; fail=1; }
+          done
+          [ $fail = 0 ] && echo "In sync with $(git -C gst-website rev-parse --short HEAD)"
+          exit $fail
