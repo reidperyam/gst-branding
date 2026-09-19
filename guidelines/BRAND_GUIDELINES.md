@@ -1,0 +1,366 @@
+# GST Brand Color & Style Guidelines
+
+Complete brand palette, usage rules, and asset guidelines for the GST website.
+
+---
+
+## Brand Colors
+
+### Primary Palette
+
+| Role                  | Hex                                  | Variable               | Usage                                                |
+| --------------------- | ------------------------------------ | ---------------------- | ---------------------------------------------------- |
+| **Primary Teal**      | `#05cd99`                            | `--color-primary`      | Links, borders, buttons, active states, brand accent |
+| **Primary Teal Dark** | `#04a87a`                            | `--color-primary-dark` | Hover/pressed states, emphasis                       |
+| **Secondary Amber**   | `#CC8800` (light) / `#FFAA33` (dark) | `--color-secondary`    | Secondary accents, warnings, alternative highlights  |
+
+### Neutral Backgrounds
+
+| Role              | Hex       | Variable                       | Usage                                  |
+| ----------------- | --------- | ------------------------------ | -------------------------------------- |
+| **White**         | `#ffffff` | `--bg-light`                   | Primary page background (light theme)  |
+| **Off-white**     | `#f5f5f5` | `--bg-light-alt`               | Secondary background — sections, cards |
+| **Light gray**    | `#eeeeee` | `--services-bg`, `--footer-bg` | Services section, footer               |
+| **Near black**    | `#0a0a0a` | `--bg-dark`                    | Primary background (dark theme)        |
+| **Dark gray**     | `#1a1a1a` | `--bg-dark-secondary`          | Secondary dark background              |
+| **Dark charcoal** | `#141414` | `--bg-dark-tertiary`           | Tertiary dark background               |
+
+### Text Colors
+
+Text colors use opacity-based rgba values for consistent contrast against backgrounds. See [VARIABLES_REFERENCE.md](./VARIABLES_REFERENCE.md#text-colors) for full values.
+
+| Role      | Light Theme            | Dark Theme                |
+| --------- | ---------------------- | ------------------------- |
+| Primary   | `rgba(26,26,26, 0.95)` | `rgba(245,245,245, 0.95)` |
+| Secondary | `rgba(26,26,26, 0.7)`  | `rgba(200,200,200, 0.8)`  |
+| Muted     | `rgba(26,26,26, 0.6)`  | `rgba(200,200,200, 0.6)`  |
+| Faded     | `rgba(26,26,26, 0.5)`  | `rgba(200,200,200, 0.5)`  |
+
+---
+
+## Typography
+
+| Property            | Value                                        |
+| ------------------- | -------------------------------------------- |
+| **Font family**     | GST Mono (Geist Mono, OFL 1.1) — self-hosted |
+| **Normal weight**   | 400                                          |
+| **Semibold weight** | 600                                          |
+| **Bold weight**     | 700                                          |
+
+**One family, named.** GST is a monospace brand and now ships the face to prove
+it: a subset variable Geist Mono, served from our own origin and aliased as
+`GST Mono` so nothing in the repo names the typeface directly. There is no
+second family — the sans token points at the mono, because nav links and button
+text were its only consumers and the system's own rule is that type is monospace
+and tracked. Never write a family name in a stylesheet; go through
+`var(--font-family-mono)`. Details and the re-cut recipe:
+[TYPOGRAPHY_REFERENCE.md § The pinned mono](./TYPOGRAPHY_REFERENCE.md).
+
+See [TYPOGRAPHY_REFERENCE.md](./TYPOGRAPHY_REFERENCE.md) for the full set of semantic text utility classes.
+
+---
+
+## Brand Asset: Delta Icon
+
+The GST delta triangle icon is the primary brand mark. It appears as:
+
+- Navigation logo element
+- Collapse/expand toggle indicator (`.delta-chevron` in `interactions.css`)
+- CSS pseudo-element decorator via mask-image technique
+- **Attention/action indicator** in `--color-secondary` (gold) — signals user interaction points
+
+**SVG source**: `/images/logo/gst-delta-icon-teal-stroke-thick.svg`
+
+**Usage rules**:
+
+- Render in `--color-primary` (teal) for branding and decoration
+- Render in `--color-secondary` (gold) to signal attention or required user action (e.g., CTAs, interactive prompts)
+- Use `currentColor` for stroke when the parent element controls color contextually
+- Use the stroke variant for inline/decorative uses
+- Scale proportionally; do not distort aspect ratio
+- See [STYLES_GUIDE.md — Brand Delta Icon](./STYLES_GUIDE.md#brand-delta-icon) for the CSS mask-image pattern
+
+---
+
+## Design Grid
+
+- **Checkerboard pattern**: 50px grid, painted as two `linear-gradient` background images on `body` itself (not a pseudo-element) with `--checkerboard-line`
+- Light theme: `rgba(0,0,0, 0.032)` — subtle dark lines on white
+- Dark theme: `rgba(255,255,255, 0.032)` — subtle light lines on dark
+- **Consequence for accessibility testing**: because the backdrop is an image, axe-core cannot resolve an opaque background behind most text and reports its contrast as INCOMPLETE, not as a violation. A passing axe scan is therefore not evidence of passing contrast — see [ADR-0035](https://github.com/Global-Strategic-Technologies/gst-website/blob/main/src/docs/adr/0035-ink-tokens-for-text-on-light-surfaces.md)
+
+---
+
+## Domain Color Families
+
+These colors are tool-specific, not brand-level. They are defined as CSS variables for consistency and dark theme support but are not part of the core brand palette.
+
+### Authority Blue (Shared: Diligence Machine + ICG)
+
+| Theme | Value     | Variable               |
+| ----- | --------- | ---------------------- |
+| Light | `#5b7a9d` | `--hub-authority-blue` |
+| Dark  | `#7a9dbd` | `--hub-authority-blue` |
+
+Used for authority/expertise-themed elements across hub tools.
+
+### Diligence Machine Domain Colors
+
+See [VARIABLES_REFERENCE.md — Diligence Machine Domain Colors](./VARIABLES_REFERENCE.md#diligence-machine-domain-colors).
+
+### ICG Maturity Colors
+
+See [VARIABLES_REFERENCE.md — ICG Maturity Colors](./VARIABLES_REFERENCE.md#icg-maturity-colors).
+
+### TechPar Zone & Chart Colors
+
+See [VARIABLES_REFERENCE.md — TechPar Variables](./VARIABLES_REFERENCE.md#techpar-variables).
+
+---
+
+## Company Name
+
+**Legal name**: Global Strategic Technologies LLC
+
+**Approved references**:
+
+- "Global Strategic Technologies" — full company name
+- "GST" — abbreviation, acceptable in all contexts
+
+**Prohibited**:
+
+- "Global Strategic Technology" (singular) — this is incorrect and has been a recurring bug
+- "Global Strategic Tech" — informal abbreviation, not approved
+- Mixing the full name and "GST" on the same page without establishing the full name first
+
+The company name must appear correctly in all user-facing content: page titles, meta tags, alt text, social sharing images, legal pages, and documentation.
+
+### Name Usage by Context
+
+| Context            | Use                               | Don't Use                                           |
+| ------------------ | --------------------------------- | --------------------------------------------------- |
+| Marketing copy     | GST                               | Global Strategic Technology / Global Strategic Tech |
+| Page titles & meta | GST                               | Global Strategic Technologies                       |
+| Legal documents    | Global Strategic Technologies LLC | GST alone                                           |
+
+---
+
+## Brand Voice
+
+### Declarative statements — use GST as subject
+
+> GST helps technology-focused investors scale with confidence.
+> GST bridges the gap between technical architecture and business impact.
+> GST quantifies what's under the hood so you can price risk accurately.
+
+### CTAs and conversational copy — use we/us/our
+
+> Let's discuss your next challenge.
+> Connect with us to explore how GST's experience can help.
+> Schedule a confidential consultation to discuss your objectives.
+
+### Founder bio (About page) — third-person
+
+> Reid Peryam is an architect and advisor...
+> He works with leadership teams across industries...
+> Reid founded GST to address a persistent gap...
+
+### Legal pages — first-person plural (standard)
+
+Privacy and Terms pages use "we," "us," "our" per legal convention.
+
+### Voice Quick Reference
+
+| Voice      | Where                                      | Example                    |
+| ---------- | ------------------------------------------ | -------------------------- |
+| GST + verb | Hero, section intros, service descriptions | "GST delivers..."          |
+| we/our     | CTAs, warm/conversational moments          | "Let's discuss..."         |
+| he/Reid    | Founder biography                          | "Reid founded GST..."      |
+| GST's      | Possessive references                      | "GST's recommendations..." |
+
+### Voice Anti-Patterns
+
+- Don't use "I" or "my" outside of direct quotes
+- Don't mix "Global Strategic Technology" and "GST" on the same page
+- Don't use "we" for declarative capability statements — use "GST"
+- Don't use the full legal entity name outside legal documents
+
+---
+
+## Accessibility
+
+- **Contrast**: All text/background combinations should meet WCAG 2.1 AA contrast ratios (4.5:1 for normal text, 3:1 for large text)
+- **Focus indicators**: 2px solid `--color-primary` outline with 2px offset via `.interactive-focus` utility or `:focus-visible` on `.brutal-*` components
+- **Color alone**: Never use color as the sole indicator of state — always pair with text, icons, or patterns
+- **Touch targets**: 44x44px per WCAG 2.5.5 (Level **AAA**) on the guarded families; **AA's 24x24 (2.5.8) everywhere else**.
+
+  **The ruling, narrowed 2026-08-03 after measurement.** BL-096 first ruled 2.5.5 a site-wide goal with documented exceptions. Applying it turned out to mean visibly rebuilding dense UI — filter chips more than doubling, the header growing on every page, the palette rail widening — all to clear a **AAA** bar. So the operator scoped it back, and the measurement supports that: axe's `target-size` rule (which implements 2.5.8 _including_ its spacing exception) reports **zero failures on 9 of 10 routes at 390px**, covering the 21px chips and the 22px nav links. Those clear AA on spacing; only the AAA figure is unmet.
+
+  > **Correction, same day.** That probe's finding for the **palette rail tabs** was wrong, and the error is worth keeping rather than quietly fixing. It ran only at 390px, where `.palette-panel__edge` is `display: none` and the tabs measure `0×0` — so "clean" meant "not rendered", not "passing". At desktop they are **32×22** and fail `target-size` on both its checks, size and spacing. They are now `min-height: var(--touch-target-min-aa)`. **Probe every viewport a control actually renders at**; a single-viewport sweep reports absence as compliance.
+  >
+  > This did not reopen the out-of-scope decision below. That closed the rail at **44px (AAA)**, which would have widened fixed chrome site-wide. This is the AA floor, 2px of height, and the rail's 32px width is untouched.
+
+  So the honest statement is a guarantee plus an aspiration, not a site-wide rule with a growing exception list:
+  - **Guaranteed and enforced at 44px**: `.brutal-btn`, `.brutal-choice-btn`, `.cta-button`, `.filter-button`, `.modal-close`, `.theme-toggle`.
+  - **Everywhere else**: AA 2.5.8 (24×24 or its spacing exception), via `--touch-target-min-aa`. Since 2026-08-03 this is **machine-enforced, not asserted** — `accessibility.test.ts` runs axe with the `wcag22aa` tag, so `target-size` fails CI on every route it scans. 44px is welcome where it costs nothing and is **not** a reason to rebuild a working layout.
+
+  > **One recorded carve-out from the 44px guarantee (2026-08-27).** The MCP onboarding pages' compact per-field Copy buttons (`CopyRow.astro` `.copy-row__btn`, and the Using page's `.field-panel__copy`) render as `.brutal-btn--secondary` but a bespoke scoped class floors them at `--touch-target-min-aa` (24px), per the reviewed design — a five-row argument panel at 44px per row stops reading as one unit. They clear AA 2.5.8 and axe scans those routes; the source guard does not flag them because its matching is by guarded-family class in the CSS selector, and these floors live on the bespoke classes.
+
+  **Measure the target, not the element.** 2.5.5 governs the region that accepts the pointer action, so a 16px checkbox inside a `cursor: pointer` `<label>` is already a label-sized target. Check for a larger clickable ancestor before raising anything.
+
+  **Guarded families** (`--touch-target-min` floor, enforced by [`touch-target-floor.test.ts`](https://github.com/Global-Strategic-Technologies/gst-website/blob/main/tests/integration/touch-target-floor.test.ts)): `.brutal-btn`, `.brutal-choice-btn`, `.cta-button`, `.filter-button`, `.modal-close`, `.theme-toggle`, plus the two exception families below. That guard checks `min-height`/`min-width` **and** `height`/`width` — a fixed `height` is a ceiling as well as a floor, which is how `.theme-toggle` sat at 13.6px. It matches the **last compound** of each selector, so `.filter-button svg { width: 20px }` sizes an icon and is correctly ignored.
+
+  **Fix with `min-height`, not `min-width`**, unless the control is a fixed-size icon button — radar pills must still wrap and scroll, and `.brutal-segmented` is `max-width: 320px; overflow: hidden`.
+
+  **Documented exceptions** live in `FLOOR_EXCEPTIONS` in that test file, each with a reason, and a stale entry fails the suite — so an exception cannot outlive the control it excuses:
+  - `.brutal-quick-zoom` (32px) — a world reset plus four region presets overlaying the map itself; 44px targets would overlap or consume ~220px (5 × 44) of vertical map on mobile. Still clears 2.5.8 AA.
+  - `.brutal-map-control` (32px) — desktop-only zoom cluster. A **documented deviation, not a WCAG exception**: 2.5.5 governs pointer inputs including the mouse, and scroll/drag are gestures rather than the equivalent _control_ the Equivalent exception requires.
+
+  **Not exempt**, contrary to a common reading: header nav, footer and TOC links. 2.5.5's Inline exception is "the target is in a sentence or block of text" — the line-height clause belongs to 2.5.8. A list of links is not a sentence.
+
+  That matters only for the AAA figure, though — and per the narrowed ruling above, header nav, footer links, TOC links, filter chips and the palette rail are all **out of scope by operator decision (2026-08-03)**: each clears AA 2.5.8, and raising any of them visibly rebuilds working UI. Recorded so nobody re-derives the sweep from first principles and reopens it.
+
+  **The only measured AA failures were on `/brand` itself, and both are fixed** (BL-103, 2026-08-03): the palette editor's RGB tracks (`.swatch-slider`) at 137 nodes of 6px height, and the rail tabs above. The sliders keep their 6px paint — the input is transparent and `::-webkit-slider-runnable-track` / `::-moz-range-track` carry it, the recipe `.brutal-slider__input` already ships in `form.css`. Expanding the hit area with a negative margin instead (the `.theme-toggle` approach) was rejected: those rows sit at a ~15.5px pitch, so 24px boxes would overlap and steal each other's clicks.
+
+  **Under-collected, and deliberately so.** `.brutal-search__result` (~36px listbox option) and `.modal__close` (a different family from `.modal-close`) exist only after an interaction, so the axe guard never reaches them — no scanned route renders them at load. `.brutal-option-card` **passes by padding: do not trim it**, the same caveat § Accessibility already carries for `.cta-button`.
+
+  Three instruments, deliberately: the source scan above catches a declaration resolving too low; [`brand-page.test.ts`](https://github.com/Global-Strategic-Technologies/gst-website/blob/main/tests/e2e/brand-page.test.ts) § Touch targets measures **rendered geometry** at two viewports, which is the only way to catch a control with no floor declared at all — the shape that let `.brutal-btn` sit at 33px; and axe's `target-size` holds the AA floor across every scanned route. `.palette-panel__tab` is in **neither** of the first two: both mean 44px, and the ruling puts the rail at AA
+
+- **Keyboard navigation**: All interactive components are focusable via Tab; modals trap focus; tab bars support arrow keys
+- **Live reference**: The [/brand page — Accessibility section](https://globalstrategic.tech/brand#accessibility) demonstrates focus states, contrast ratios, touch targets, keyboard patterns, ARIA usage, and semantic HTML structure
+
+---
+
+## Semantic Color System
+
+Shared status colors for use across all tools and components. Derived from battle-tested values in TechPar, ICG, and Diligence Machine.
+
+| Variable          | Light     | Dark      | Usage                                                               |
+| ----------------- | --------- | --------- | ------------------------------------------------------------------- |
+| `--color-success` | `#2e8b57` | `#3da868` | Positive outcomes, passing states                                   |
+| `--color-warning` | `#CC8800` | `#FFAA33` | Caution indicators, borderline states (aliases `--color-secondary`) |
+| `--color-error`   | `#d93636` | `#e05050` | Failures, negative KPIs, critical alerts                            |
+| `--color-info`    | `#05cd99` | `#05cd99` | Informational highlights (aliases `--color-primary`)                |
+
+**These are fill and border colours.** As text they fail AA on light surfaces; text uses the matching ink — `--color-success-ink`, `--color-warning-ink`, `--color-error-ink` (and `--color-secondary-ink`). Brand teal `--color-primary` is the exception and stays teal as text. See [ADR-0035](https://github.com/Global-Strategic-Technologies/gst-website/blob/main/src/docs/adr/0035-ink-tokens-for-text-on-light-surfaces.md).
+
+Tool-specific status variables (e.g. `--dm-success`, `--techpar-kpi-negative`) may reference these shared values for consistency, but existing tool palettes remain valid within their own scope.
+
+---
+
+## Alternative Palette System
+
+Six color palettes are defined in `src/styles/palettes.css`, enabling stakeholders to preview the entire site in alternative brand directions. The active palette is applied as a class on `<html>` (e.g., `html.palette-1`), mirroring the dark-theme pattern, and persisted via `localStorage('palette')`.
+
+| ID  | Name                     | Primary           | Secondary         | Character                               |
+| --- | ------------------------ | ----------------- | ----------------- | --------------------------------------- |
+| 0   | **Current** (production) | Teal `#05cd99`    | Amber `#CC8800`   | The baseline                            |
+| 1   | **Steel Authority**      | Cobalt `#1e40af`  | Magenta `#db2777` | PE gravitas with an unexpected edge     |
+| 2   | **Indigo Signal**        | Violet `#7c3aed`  | Lime `#84cc16`    | Breaks every finance-blue convention    |
+| 3   | **Copper Forge**         | Rust `#b45309`    | Cyan `#0891b2`    | Industrial heat meets cold precision    |
+| 4   | **Jade Edge**            | Emerald `#059669` | Rose `#f43f5e`    | Current teal pushed to its boldest form |
+| 5   | **Shadow Garden**        | Forest `#166534`  | Violet `#a855f7`  | Terminal in an old-growth forest        |
+
+Each palette overrides the 9 core tokens (`--color-primary`, `--color-primary-dark`, `--color-secondary`, `--color-success`, `--color-warning`, `--color-error`, `--color-authority`, `--color-distinguish`, `--color-subdued`) plus derived accent/border/opacity scales. All tool-domain colors cascade automatically.
+
+**How to preview:** Open the PalettePanel on the `/brand` page (right-edge tab bar). Click the middle delta icon to "pop out" the panel to all pages.
+
+**Important:** Palette 0 is the production palette. Alternative palettes are for stakeholder review only — they are not deployed to production.
+
+---
+
+## Color Usage Hierarchy
+
+When choosing a color, follow this priority order:
+
+| Priority | Color Family                                                             | When to Use                                          | Examples                                                  |
+| -------- | ------------------------------------------------------------------------ | ---------------------------------------------------- | --------------------------------------------------------- |
+| 1        | **Primary teal** (`--color-primary`)                                     | Interactive elements, brand accents, data highlights | Links, buttons, focus rings, active states, hover borders |
+| 2        | **Secondary amber** (`--color-secondary`)                                | Secondary emphasis, alternative highlights           | Warning badges, secondary CTAs, TechPar zone indicators   |
+| 3        | **Semantic** (`--color-success/warning/error/info`)                      | Status indicators, validation, alerts                | Form errors, maturity levels, success confirmations       |
+| 4        | **Neutrals** (`--text-*`, `--bg-*`, `--border-*`)                        | Body content, backgrounds, borders                   | Default for all non-interactive, non-status content       |
+| 5        | **Domain** (`--hub-*`, `--dm-*`, `--icg-*`, `--techpar-*`, `--regmap-*`) | Tool-specific contexts only                          | Never used outside their owning tool                      |
+
+**Rules**:
+
+- Primary teal is the only color for primary CTAs — never use secondary amber or semantic colors for the primary action
+- Semantic colors must always be paired with text or an icon — never rely on color alone (accessibility requirement)
+- Domain colors are scoped to their tool and must not leak into shared components
+
+---
+
+## Color Contrast Requirements
+
+All text and UI element pairings must meet WCAG 2.1 AA contrast minimums:
+
+| Element Type                                            | Minimum Contrast Ratio |
+| ------------------------------------------------------- | ---------------------- |
+| Normal text (< 18px or < 14px bold)                     | 4.5:1                  |
+| Large text (≥ 18px or ≥ 14px bold)                      | 3:1                    |
+| Non-text UI elements (borders, icons, focus indicators) | 3:1                    |
+
+**Fill versus ink ([ADR-0035](https://github.com/Global-Strategic-Technologies/gst-website/blob/main/src/docs/adr/0035-ink-tokens-for-text-on-light-surfaces.md))**: brand and status colours are fill and border colours. Used as text on a light surface they fail AA — `--color-primary` 2.06:1, `--color-secondary`/`--color-warning` 2.96:1 — so text uses the `-ink` tokens. **Brand teal is exempt by decision**: `--color-primary` text, delta icons and focus rings stay teal, accepting 2.06:1 on light surfaces, because a darker substitute reads as a different brand colour. Inks are unchanged in dark theme. `tests/integration/ink-token-contrast.test.ts` guards every ink in all six palettes.
+
+**`--text-muted` usage**: Opacity is `0.65` in light theme and `0.6` in dark, yielding ~5.4:1 on `#ffffff` and ~4.7:1 on `#0a0a0a`. Both clear the 4.5:1 AA floor for normal text, but only just — so restrict `--text-muted` to large text (≥ 18px), labels, captions, placeholder text, and decorative/disabled elements. For sustained normal-sized body text, use `--text-secondary` or higher. The live per-theme ratios are rendered on `/brand` under Accessibility → Color Contrast Ratios.
+
+---
+
+## Data Visualization Color Standards
+
+### Approved Tool Palettes
+
+| Tool              | Palette                                       | Variables                                               |
+| ----------------- | --------------------------------------------- | ------------------------------------------------------- |
+| TechPar           | Teal band, blue ahead, amber under, red above | `--techpar-chart-*`, `--techpar-zone-*`                 |
+| ICG               | Red → orange → green → teal maturity scale    | `--icg-maturity-*`                                      |
+| Diligence Machine | Authority blue, methodology brown             | `--hub-authority-blue`, `--dm-methodology-brown`        |
+| Regulatory Map    | Purple-blue industry, red cybersecurity       | `--regmap-category-industry`, `--regmap-category-cyber` |
+
+### CVD-Safe Sequence for Future Charts
+
+For multi-series charts (max 6 colors), use this sequence for adequate color vision deficiency separation:
+
+1. Teal — `--color-primary`
+2. Blue — `--hub-authority-blue`
+3. Amber — `--color-secondary`
+4. Red — `--color-error`
+5. Purple — `--regmap-category-industry`
+6. Brown — `--dm-methodology-brown`
+
+**Rule**: Always pair color with a secondary differentiator (pattern fill, label, position, shape) for color-blind accessibility.
+
+---
+
+## Brand Asset: Delta Icon — Usage Rules
+
+| Rule                           | Value                                                                                                     |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------- |
+| Minimum size (inline)          | 10px                                                                                                      |
+| Minimum size (standalone)      | 16px                                                                                                      |
+| Approved colors                | `--color-primary` (teal) for branding, `--color-secondary` (gold) for attention/action, or `currentColor` |
+| Minimum clearance (standalone) | `--spacing-sm` (8px)                                                                                      |
+| Prohibited                     | Distortion, unapproved colors, background fill, rotation beyond chevron toggle                            |
+
+### Placement Guidelines
+
+- **Navigation**: Top-left in the logo wrapper. Always paired with "GST" text.
+- **Toggles**: Inline-end position within collapsible headers. Rotates 0°↔180° via `.delta-chevron`.
+- **Decorative**: As `::before`/`::after` pseudo-elements via CSS mask-image. Teal only.
+- **Attention / CTA**: Inline-start position paired with instructional text. Gold (`--color-secondary`) to signal user action. Used in `.brutal-map-cta` and similar interactive prompts.
+- **Print**: Unicode delta character `\0394` in document headers.
+
+---
+
+## Related Documentation
+
+- **[/brand](https://globalstrategic.tech/brand)** — Live rendered brand reference page with color swatches, typography specimens, and UI component library. Shareable with external stakeholders without repo access.
+- [STYLES_GUIDE.md](./STYLES_GUIDE.md) — CSS conventions, component patterns
+- [VARIABLES_REFERENCE.md](./VARIABLES_REFERENCE.md) — Complete design token catalog
+- [TYPOGRAPHY_REFERENCE.md](./TYPOGRAPHY_REFERENCE.md) — Typography utility classes
+- [STYLES_REMEDIATION_ROADMAP.md](./STYLES_REMEDIATION_ROADMAP.md) — Tracked remediation initiatives
+
+---
+
+**Created**: March 23, 2026
+**Last Updated**: April 5, 2026
+**Status**: Complete — all requirements finalized

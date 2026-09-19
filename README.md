@@ -1,336 +1,85 @@
-# Global Strategic Technologies - Logo Assets Package
+# GST Branding
 
-## 📦 Package Contents
+Brand guidelines, design system and logo/social assets for **Global Strategic
+Technologies** (GST). Everything here mirrors what is live on
+[globalstrategic.tech](https://globalstrategic.tech) — the
+[gst-website](https://github.com/Global-Strategic-Technologies/gst-website) repo is the
+source of truth and this repo is a published, consumable snapshot of it.
 
-This package contains your complete, refined logo system with transparent backgrounds implementing the Delta (Δ) symbol and supporting all three naming conventions: Full name, GS Tech, and GST.
+The rendered brand reference (colour swatches, type specimens, every UI component in
+light/dark and all six palettes) is at **<https://globalstrategic.tech/brand>**.
 
-### Directory Structure
+## Layout
 
 ```
-logo-assets/
-├── svg/                           # Vector files (use these primarily)
-│   ├── gst-logo-full-horizontal-color-transparent.svg
-│   ├── gst-logo-gstech-horizontal-color-transparent.svg
-│   ├── gst-logo-gst-horizontal-color-transparent.svg
-│   ├── gst-logo-full-stacked-color-transparent.svg
-│   ├── gst-logo-gstech-stacked-color-transparent.svg
-│   ├── gst-logo-icon-color-transparent.svg
-│   ├── gst-logo-full-horizontal-black-transparent.svg
-│   └── gst-logo-gstech-horizontal-white-transparent.svg
-│
-├── favicon/                       # Favicon files
-│   └── favicon.svg
-│
-├── png/                          # Raster files (to be generated)
-│   ├── horizontal/
-│   ├── stacked/
-│   ├── icon/
-│   ├── favicon/
-│   ├── social/
-│   └── email/
-│
-├── IMPLEMENTATION_GUIDE.md       # Complete implementation instructions
-├── generate-pngs.sh             # Script to generate PNG files
-└── README.md                    # This file
+guidelines/          Written brand & style guidance (start here for non-web work)
+  BRAND_GUIDELINES.md    colours, palettes, company name, voice, delta icon, a11y
+  STYLES_GUIDE.md        CSS conventions & component patterns
+  VARIABLES_REFERENCE.md full design-token catalogue (328 custom properties)
+  TYPOGRAPHY_REFERENCE.md
+
+design-system/       The shipped CSS system (start here for anything on the web)
+  styles.css             single entry point — link this one file
+  gst.css                compiled stylesheet: tokens, typography, palettes, .brutal-* classes
+  fonts/                 GST Mono (Geist Mono subset, OFL) + @font-face
+  components/chrome/     rendered production markup for site sections (header, hero, footer…)
+  components/specimens/  galleries of every variant of buttons, cards, forms, colour, type…
+  screenshots/           PNG renders of every card, plus light/dark and palette 0–5 probes
+  README.md              how to consume the system (tokens, theming, do/don't)
+  SOURCE.json            which gst-website commit this snapshot came from
+
+assets/              Ready-to-use brand files
+  logo/                  delta icon (teal / dark / white stroke), app icon, BIMI logo
+  favicon/               favicon.svg, favicon.ico, apple-touch-icon, PWA manifest icons
+  social/                OG image 1200×630, LinkedIn company logo (svg/png), LinkedIn cover
+
+scripts/sync-from-website.sh   regenerate all of the above from a local gst-website checkout
 ```
 
----
+## Quick start
 
-## 🚀 Quick Start
+**Web:** copy `design-system/` and link one stylesheet.
 
-### 1. Generate PNG Files
+```html
+<link rel="stylesheet" href="design-system/styles.css">
+```
 
-**Option A: Using Inkscape (Automated)**
+Theme and palette are classes on `<html>` (never `<body>`): `html.dark-theme` for
+dark mode, `html.palette-0` … `html.palette-5` for the alternative palettes. Tokens
+switch automatically via `light-dark()`. See `design-system/README.md` for the rules.
+
+**Anything else (decks, docs, social):** read `guidelines/BRAND_GUIDELINES.md` and use
+the files in `assets/`.
+
+## Brand at a glance
+
+| | |
+| --- | --- |
+| Primary teal | `#05cd99` (`--color-primary`, same in both themes) |
+| Primary teal dark | `#04a87a` (hover / pressed) |
+| Secondary amber | `#cc8800` light / `#ffaa33` dark (`--color-secondary`) — attention / CTA |
+| Backgrounds | `#ffffff` / `#f5f5f5` light · `#0a0a0a` / `#141414` dark |
+| Typeface | **GST Mono** (Geist Mono variable, weights 100–900), mono everywhere |
+| Mark | The delta (Δ) — a stroked triangle; teal for brand, amber to signal action |
+| Name | "Global Strategic Technologies" (legal: …LLC), short form "GST" — never "Global Strategic Technology" or "Global Strategic Tech" |
+
+Full rules, contrast requirements and the six alternative palettes are in
+`guidelines/BRAND_GUIDELINES.md`.
+
+## Keeping this in sync
+
+The website is authoritative. When it changes:
+
 ```bash
-# Make sure Inkscape is installed
-# macOS: brew install inkscape
-# Ubuntu: sudo apt install inkscape
-
-# Run the generation script
-./generate-pngs.sh
+scripts/sync-from-website.sh ../gst-website   # needs the website's ds-bundle built
+git add -A && git commit -m "Sync from gst-website <sha>"
 ```
 
-**Option B: Using CloudConvert (Manual but Easy)**
-1. Visit https://cloudconvert.com/svg-to-png
-2. Upload SVG files from `svg/` directory
-3. Set appropriate dimensions (see IMPLEMENTATION_GUIDE.md)
-4. Download and place in `png/` subdirectories
+`design-system/SOURCE.json` records the website commit and bundle hash each snapshot
+was taken from.
 
-### 2. Copy to Your Website
+## Licence
 
-```bash
-# Copy entire logo-assets directory to your website project
-cp -r logo-assets/* /path/to/your/website/public/images/logo/
-```
-
-### 3. Implement in Your Code
-
-Follow the detailed instructions in `IMPLEMENTATION_GUIDE.md`
-
----
-
-## 📋 Logo Variations Explained
-
-### Full Name: "Global Strategic Technologies"
-**Files:**
-- `gst-logo-full-horizontal-color-transparent.svg`
-- `gst-logo-full-stacked-color-transparent.svg`
-- `gst-logo-full-horizontal-black-transparent.svg`
-
-**Use for:**
-- Desktop website header (1200px+)
-- Business cards
-- Formal presentations
-- Legal documents
-- Print materials
-
-**Dimensions:** ~700px wide × 100px tall (horizontal)
-
----
-
-### Medium Length: "GS Tech" ⭐ RECOMMENDED
-**Files:**
-- `gst-logo-gstech-horizontal-color-transparent.svg`
-- `gst-logo-gstech-stacked-color-transparent.svg`
-- `gst-logo-gstech-horizontal-white-transparent.svg`
-
-**Use for:**
-- Tablet header (768-1199px)
-- Email signatures
-- Most everyday contexts
-- Compact spaces
-- General branding
-
-**Dimensions:** ~350px wide × 100px tall (horizontal)
-
-**Why recommended:** Balances brevity with clarity, keeps "Tech" identity
-
----
-
-### Short Form: "GST"
-**Files:**
-- `gst-logo-gst-horizontal-color-transparent.svg`
-- `gst-logo-icon-color-transparent.svg`
-
-**Use for:**
-- Mobile header (<768px)
-- Favicons
-- App icons
-- Social media avatars
-- Very compact spaces
-- Casual references
-
-**Dimensions:** ~260px wide × 100px tall (horizontal), 512×512 (icon)
-
----
-
-### Favicon
-**File:**
-- `favicon.svg`
-
-**Use for:**
-- Browser tabs
-- Bookmarks
-- PWA icons
-
-**Special:** Simplified Delta symbol only (works at 16×16px)
-
----
-
-## 🎨 Design Specifications
-
-### Colors
-- **Primary (Teal):** #00D9B5
-- **Text (Dark):** #2C3E50
-- **Text (Light BG):** #000000 (monochrome)
-- **Text (Dark BG):** #FFFFFF (monochrome)
-
-### Typography
-- **Font:** Montserrat
-- **Weight:** 500 (Medium) for full name / GS Tech
-- **Weight:** 700 (Bold) for GST letters only
-- **Letter Spacing:** 2px
-
-### Symbol
-- **Shape:** Equilateral triangle (Delta Δ)
-- **Meaning:** Mathematical change (Δ = "change in")
-- **Brand Connection:** "Delivering Measurable Transformation"
-
----
-
-## 📱 Responsive Usage Guide
-
-| Screen Size | Logo Variant | File |
-|-------------|-------------|------|
-| **Desktop (1200px+)** | Full Name | `gst-logo-full-horizontal-color-transparent.svg` |
-| **Tablet (768-1199px)** | GS Tech | `gst-logo-gstech-horizontal-color-transparent.svg` |
-| **Mobile (<768px)** | GST | `gst-logo-gst-horizontal-color-transparent.svg` |
-| **Email Signature** | GS Tech | PNG version (280×56 or 560×112 for retina) |
-| **Favicon** | Delta only | `favicon.svg` + PNG versions |
-| **Social Profile** | Stacked | `gst-logo-gstech-stacked-color-transparent.svg` |
-
----
-
-## ✅ What's Different from Your Original
-
-### Before (Issues)
-- ❌ Used square (■) instead of Delta (Δ)
-- ❌ Only had "GST" variation
-- ❌ Too bold (700+ weight)
-- ❌ White/black backgrounds (not transparent)
-- ❌ Limited versatility
-
-### After (Refined)
-- ✅ Delta (Δ) symbol throughout
-- ✅ Complete naming system (Full / GS Tech / GST)
-- ✅ Sophisticated weight (500 Medium)
-- ✅ True transparent backgrounds
-- ✅ Complete 18+ variation system
-- ✅ PE executive-appropriate sophistication
-
----
-
-## 🔧 File Naming Convention
-
-```
-gst-logo-[name]-[layout]-[color]-[background].[format]
-
-Components:
-- name: full / gstech / gst / icon
-- layout: horizontal / stacked
-- color: color / black / white
-- background: transparent (always)
-- format: svg / png
-
-Examples:
-✅ gst-logo-full-horizontal-color-transparent.svg
-✅ gst-logo-gstech-stacked-color-transparent.svg
-✅ gst-logo-icon-color-transparent.png
-```
-
----
-
-## 📊 Size Reference
-
-### Horizontal Logos
-| Logo | Recommended Width | Height |
-|------|------------------|--------|
-| Full Name | 700px | 100px |
-| GS Tech | 350px | 100px |
-| GST | 260px | 100px |
-
-### Stacked Logos
-| Logo | Dimensions |
-|------|-----------|
-| Full Stacked | 400×400 |
-| GS Tech Stacked | 300×300 |
-
-### Icons & Favicons
-| Use | Size |
-|-----|------|
-| Icon Base | 512×512 |
-| Favicon | 16×16, 32×32, 64×64 |
-| Apple Touch | 180×180 |
-| Android Chrome | 192×192, 512×512 |
-
----
-
-## 🎯 Implementation Checklist
-
-### Immediate (Today)
-- [ ] Generate PNG files using script or online converter
-- [ ] Copy SVG files to website `/public/images/logo/svg/`
-- [ ] Update website header with responsive logo
-- [ ] Test on desktop, tablet, mobile
-
-### This Week
-- [ ] Update favicon in HTML head
-- [ ] Generate and add Open Graph images
-- [ ] Create email signature with new logo
-- [ ] Update social media profiles
-
-### This Month
-- [ ] Print business cards with new logo
-- [ ] Update presentation templates
-- [ ] Create brand guidelines document
-- [ ] Train team on proper usage
-
----
-
-## 💡 Key Strategic Insights
-
-### Brand Naming Philosophy
-Your logo system embraces **client flexibility** as a feature:
-
-- **Full Name:** "Global Strategic Technologies" - formal contexts
-- **GS Tech:** Balanced, recommended for most uses
-- **GST:** Quick, casual reference
-
-**Let clients use whatever feels natural.** Don't correct their preference. Your brand system supports all three equally.
-
-### The Delta (Δ) Matters
-The Delta symbol is your core brand identity:
-- Represents **measurable transformation**
-- Communicates **quantifiable business impact**
-- Signals **technical precision and analytical rigor**
-- Differentiates from generic consulting firms
-
-### PE Executive Audience
-Your typography refinement matters:
-- **Medium weight (500)** = Executive sophistication
-- **Bold weight (700)** = Startup energy (too casual)
-- Your clients are CFOs and investment committee members, not developers
-
----
-
-## 📞 Support & Resources
-
-### Tools Needed
-- **SVG to PNG Converter:** https://cloudconvert.com/svg-to-png
-- **Favicon Generator:** https://realfavicongenerator.net/
-- **Inkscape (Free):** https://inkscape.org/
-- **Image Optimization:** https://tinypng.com/
-
-### Testing Tools
-- **Open Graph Preview:** https://www.opengraph.xyz/
-- **Twitter Card Validator:** https://cards-dev.twitter.com/validator
-- **Favicon Checker:** https://realfavicongenerator.net/favicon_checker
-
-### Questions?
-Refer to `IMPLEMENTATION_GUIDE.md` for:
-- Detailed code examples
-- Astro component templates
-- Troubleshooting guide
-- Performance optimization tips
-
----
-
-## ✨ What You Have Now
-
-✅ **Complete logo system** with 8+ SVG variations  
-✅ **Delta (Δ) symbol** properly implemented  
-✅ **Three naming lengths** (Full / GS Tech / GST)  
-✅ **Transparent backgrounds** for all uses  
-✅ **PE executive sophistication** (not startup casual)  
-✅ **Responsive strategy** (desktop/tablet/mobile)  
-✅ **Implementation guide** with code examples  
-✅ **Automated PNG generation** script  
-
----
-
-## 🚀 Next Actions
-
-1. **Run `./generate-pngs.sh`** to create PNG files
-2. **Read `IMPLEMENTATION_GUIDE.md`** for detailed instructions
-3. **Copy files to your website** project
-4. **Update header component** with responsive logos
-5. **Test thoroughly** across devices
-
----
-
-**Package Version:** 1.0  
-**Created:** 2026-02-01  
-**Status:** Ready for deployment  
-**Brand:** Global Strategic Technologies LLC
-
-**🎉 Your professional logo system is complete and ready to implement!**
+Brand assets, guidelines and the design system are © Global Strategic Technologies.
+The bundled font is a subset of [Geist Mono](https://vercel.com/font) under the SIL Open
+Font License — see `design-system/fonts/LICENSE-OFL.txt`.

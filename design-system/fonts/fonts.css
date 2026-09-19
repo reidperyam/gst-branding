@@ -1,0 +1,28 @@
+@font-face{
+  font-family: 'GST Mono';
+
+  /* `format('woff2')` is the CSS Fonts 4 spelling, and variable axes ride on it.
+     The handoff proposed `format('woff2-variations')`; all three engines accept
+     all three spellings (plain, `-variations`, and `format('woff2')
+     tech('variations')`) — measured, not assumed — so this picks the
+     non-deprecated one. */
+  src: url('./gst-mono-var-latin-v1.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+
+  /* The range the subset was cut to, which is a SUPERSET of what the file
+     actually carries — the subsetter drops codepoints the face has no glyph
+     for, so 367 of these resolve and the rest fall through per-glyph. That is
+     harmless and is how per-glyph fallback is supposed to work.
+
+     Two blocks the handoff's proposed range omitted are load-bearing here:
+     U+2500–257F box drawing (the TableOfContents tree and the /brand rules draw
+     ~16k of them — in a fallback face they misalign against the mono grid) and
+     U+20AC, which the tech-debt calculator renders. Δ (U+0394), ⓘ (U+24D8) and
+     ⚠ (U+26A0) are deliberately outside it: Geist Mono has no glyph for them at
+     all. */
+  unicode-range:
+    U+0000-00FF, U+0131, U+2000-206F, U+20AC, U+2190-2199, U+2212, U+221A, U+2248, U+2264-2265,
+    U+25A0-25FF, U+2500-257F;
+}
