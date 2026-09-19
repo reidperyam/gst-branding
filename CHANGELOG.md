@@ -15,6 +15,7 @@ Rebuilt from the gst-website design system (website commit `ce8d58f5`).
 - New `guidelines/LOGO_USAGE.md`: wordmark spec, minimum size, clear space, backgrounds.
 - New vector wordmark (`assets/wordmark/`) generated from the site's `HeaderLogo.astro`
   spec, plus @2x PNGs.
+- OG image regenerated in GST Mono from the OG template (the old one was a fallback sans-serif); editable SVG source kept alongside.
 - New social templates (`assets/social/templates/`): 1080×1080, 1200×675, 1200×630.
 - `guidelines/` now mirrors `src/docs/styles/` from the website; `design-system/` is the
   website's exported bundle (styles, fonts, rendered component cards, screenshots).
